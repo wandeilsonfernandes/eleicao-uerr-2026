@@ -959,33 +959,20 @@ function tocarBeepUrna(freq = 880, duracao = 0.08) {
 }
 
 function atualizarTelaUrna() {
-  document.getElementById("digit1").textContent = digitosUrna[0] || "";
-  document.getElementById("digit2").textContent = digitosUrna[1] || "";
+  document.getElementById("digit1").textContent = "🔒";
+  document.getElementById("digit2").textContent = "🛑";
 
   const preview = document.getElementById("urnaPreview");
   const hint = document.getElementById("urnaHint");
 
-  if (digitosUrna === "10") {
-    preview.style.display = "flex";
-    document.getElementById("urnaCandImg").src = "clenya.gif";
-    document.getElementById("urnaCandName").textContent = "Dra. Clenya Rejane Barros de Lima";
-    document.getElementById("urnaCandParty").textContent = "PES - Partido da Engenharia de Software & Moodle";
-    document.getElementById("urnaCandSlogan").textContent = "54 Bancas de TCC e 100% de Normas ABNT!";
-    hint.innerHTML = "✅ Número válido! Aperte <strong>CONFIRMA</strong> para virar a eleição pra Dra. Clenya!";
-  } else if (digitosUrna === "20") {
-    preview.style.display = "flex";
-    document.getElementById("urnaCandImg").src = "caio.gif";
-    document.getElementById("urnaCandName").textContent = "Msc. Caio de Jesus Gregoratto";
-    document.getElementById("urnaCandParty").textContent = "P3D - Partido do Blender 3D, Visão Comp. & AgroTech";
-    document.getElementById("urnaCandSlogan").textContent = "Digitação 60h SENAC + OpenGL no Linux!";
-    hint.innerHTML = "✅ Número válido! Aperte <strong>CONFIRMA</strong> para virar a eleição pro Msc. Caio!";
-  } else if (digitosUrna.length === 2) {
-    preview.style.display = "none";
-    hint.innerHTML = "⚠️ <strong>VOTO NULO DE COMPILAÇÃO (Syntax Error)</strong> — Use 10 (Clenya) ou 20 (Caio)!";
-  } else {
-    preview.style.display = "none";
-    hint.innerHTML = "Digite <strong>10</strong> para Dra. Clenya ou <strong>20</strong> para Msc. Caio";
-  }
+  preview.style.display = "flex";
+  document.getElementById("urnaCandImg").src = "clenya.gif";
+  document.getElementById("urnaCandName").textContent = "🛑 ELEIÇÃO JÁ ACABOU! URNA LACRADA!";
+  document.getElementById("urnaCandParty").textContent = "Relatório Oficial Emitido em 26/11/2026 às 11:43:23";
+  document.getElementById("urnaCandSlogan").textContent = "🏆 Dra. Clenya Rejane Barros de Lima ELEITA com 70,65% vs 29,35% (Msc. Caio)!";
+
+  hint.innerHTML =
+    "🚨 <strong>A ELEIÇÃO JÁ ACABOU!</strong> As urnas foram encerradas em 25/11 às 22:00:00 e o Relatório Oficial já proclamou a vitória da <strong>Dra. Clenya (70,65%)</strong>! Se você faz parte dos <strong>35 alunos que esqueceram de votar</strong>, agora só em 2028 kkkkkk!";
 }
 
 // 12. EVENT LISTENERS E INICIALIZAÇÃO GERAL
@@ -998,47 +985,10 @@ document.addEventListener("DOMContentLoaded", () => {
   renderizarTabelaEleitores();
   iniciarChatSimulado();
 
-  // Timer opcional para modo zoeira (desligado por padrão para exibir os 70,65% x 29,35% reais do PDF!)
-  setInterval(() => {
-    if (!loopSimulacaoAtivo) return;
-    contadorRegressivo--;
-    if (contadorRegressivo <= 0) {
-      executarViradaDramatica();
-      contadorRegressivo = cicloAutomaticoSegundos;
-    }
-    const btnLoop = document.getElementById("btnToggleSimLoop");
-    if (btnLoop) {
-      const fmt = contadorRegressivo < 10 ? `0${contadorRegressivo}s` : `${contadorRegressivo}s`;
-      btnLoop.textContent = `🔄 ZOEIRA ATIVA (VIRADA EM ${fmt})`;
-    }
-  }, 1000);
-
-  // Botão Restaurar Dados Oficiais (70,65% x 29,35%)
-  const btnRestore = document.getElementById("btnRestoreOfficial");
-  if (btnRestore) {
-    btnRestore.addEventListener("click", restaurarDadosOficiais);
-  }
-
-  // Botão Ligar/Desligar Loop de Simulação
-  const btnToggleLoop = document.getElementById("btnToggleSimLoop");
-  if (btnToggleLoop) {
-    btnToggleLoop.addEventListener("click", () => {
-      loopSimulacaoAtivo = !loopSimulacaoAtivo;
-      if (loopSimulacaoAtivo) {
-        contadorRegressivo = cicloAutomaticoSegundos;
-        btnToggleLoop.classList.add("sim-active");
-        executarViradaDramatica();
-      } else {
-        restaurarDadosOficiais();
-      }
-    });
-  }
-
-  // Botão Simular Virada
-  document.getElementById("btnForceFlip").addEventListener("click", () => {
-    executarViradaDramatica();
-    contadorRegressivo = cicloAutomaticoSegundos;
-  });
+  // Ao entrar no site, já mostra automaticamente a tela de Vitória Oficial da Dra. Clenya!
+  setTimeout(() => {
+    dispararTelaVitoriaFuzue("clenya");
+  }, 250);
 
   // Abas do Mapa (Boa Vista vs Roraima)
   document.getElementById("tabBoaVista").addEventListener("click", (e) => {
@@ -1100,78 +1050,41 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Controles da Urna Eletrônica
+  // Controles da Urna Eletrônica (Agora Lacrada porque a eleição já acabou!)
   document.getElementById("btnOpenUrna").addEventListener("click", abrirModalUrna);
   document.getElementById("btnCloseUrna").addEventListener("click", fecharModalUrna);
 
+  function alertarEleicaoEncerradaUrna() {
+    tocarBeepUrna(240, 0.18);
+    const hint = document.getElementById("urnaHint");
+    hint.innerHTML =
+      "🛑 <strong>VOTAÇÃO ENCERRADA!</strong> Não adianta apertar teclado: a eleição já acabou e o Relatório Oficial de 26/11 (11:43:23) já confirmou <strong>Dra. Clenya eleita com 70,65%</strong>!";
+  }
+
   document.querySelectorAll(".num-key").forEach(btn => {
-    btn.addEventListener("click", () => {
-      if (digitosUrna.length < 2) {
-        digitosUrna += btn.getAttribute("data-num");
-        tocarBeepUrna(720, 0.06);
-        atualizarTelaUrna();
-      }
+    btn.addEventListener("click", alertarEleicaoEncerradaUrna);
+  });
+
+  document.getElementById("keyCorrige").addEventListener("click", alertarEleicaoEncerradaUrna);
+  document.getElementById("keyBranco").addEventListener("click", alertarEleicaoEncerradaUrna);
+
+  document.getElementById("keyConfirma").addEventListener("click", () => {
+    alertarEleicaoEncerradaUrna();
+    const autor = document.getElementById("chatIdentitySelect").value;
+    adicionarMensagemChat({
+      autor: `🛑 URNA LACRADA (${autor})`,
+      bairro: "Seção Eleitoral UERR",
+      texto: "Tentou votar atrasado na urna eletrônica, mas a eleição já acabou e a Dra. Clenya já venceu com 70,65%! 😂🔒",
+      sistema: true
     });
   });
 
-  document.getElementById("keyCorrige").addEventListener("click", () => {
-    digitosUrna = "";
-    tocarBeepUrna(440, 0.08);
-    atualizarTelaUrna();
-  });
-
-  document.getElementById("keyBranco").addEventListener("click", () => {
-    digitosUrna = "10"; // Em sátira, voto em branco compila automaticamente pra quem estiver atrás!
-    tocarBeepUrna(600, 0.08);
-    atualizarTelaUrna();
-  });
-
-  document.getElementById("keyConfirma").addEventListener("click", () => {
-    if (digitosUrna === "10" || digitosUrna === "20") {
-      // Som clássico "PIRILILIM" da urna
-      tocarPirililimUrna();
-      const escolhido = digitosUrna === "10" ? "clenya" : "caio";
-      executarViradaDramatica(escolhido);
-      contadorRegressivo = cicloAutomaticoSegundos;
-
-      const autor = document.getElementById("chatIdentitySelect").value;
-      adicionarMensagemChat({
-        autor: `🗳️ URNA (${autor})`,
-        bairro: "Seção Especial UERR",
-        texto: `Acabou de votar na Chapa ${digitosUrna} e decretou VITÓRIA COM FUZUÊ!`,
-        sistema: true
-      });
-      fecharModalUrna();
-      // Abre a tela de vitória insana após votar na urna!
-      setTimeout(() => dispararTelaVitoriaFuzue(escolhido), 350);
-    } else {
-      tocarBeepUrna(300, 0.15);
-    }
-  });
-
-  // Botões de Vitória Fuzuê no Topo e Controles da Tela de Vitória
-  document.getElementById("btnWinClenya").addEventListener("click", () => {
-    restaurarDadosOficiais();
-    dispararTelaVitoriaFuzue("clenya");
-  });
-
-  document.getElementById("btnWinCaio").addEventListener("click", () => {
-    executarViradaDramatica("caio");
-    dispararTelaVitoriaFuzue("caio");
-  });
-
+  // Controles da Tela de Vitória Oficial da Dra. Clenya
   document.getElementById("btnCloseVictory").addEventListener("click", fecharTelaVitoriaFuzue);
 
   document.getElementById("btnFuzueHorn").addEventListener("click", () => {
     tocarFanfarraFuzue();
     explodirFogosExtras();
-  });
-
-  document.getElementById("btnInvertWinner").addEventListener("click", () => {
-    const outro = vencedorFuzueAtual === "clenya" ? "caio" : "clenya";
-    if (outro === "clenya") restaurarDadosOficiais();
-    else executarViradaDramatica("caio");
-    dispararTelaVitoriaFuzue(outro);
   });
 });
 
