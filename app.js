@@ -234,19 +234,19 @@ const ZONAS_RORAIMA = [
 
 // 3. FRASES DE VIRADA DRAMÁTICA E EVENTOS DE APURAÇÃO
 const MOTIVOS_VIRADA_CLENYA = [
+  "Acabaram de chegar as urnas contabilizando os votos do Nordeste e Dra. Clenya virou!",
+  "Valbert Breno descobriu que a votação vai até as 22h e liberou lote extra no Canarinho!",
   "Recontagem de 54 atas de bancas de TCC no Canarinho deu +3 votos pra Dra. Clenya!",
   "Lote de votos via Moodle EaD do Paraviana e Pacaraima compilou sem erros de ABNT!",
-  "Seção do Caçari validou certificado de 180h em Educação a Distância e virou o placar!",
-  "Orientandos de TCC de 2025/2026 (Andrey Ponte e Caio Rodrigo) puxaram mutirão no Mecejana!",
-  "Auditoria de Usabilidade no Portal da Transparência anulou 2 votos em branco e Clenya assumiu a ponta!"
+  "Orientandos de TCC de 2025/2026 puxaram mutirão das 21h59 antes de fechar o link!"
 ];
 
 const MOTIVOS_VIRADA_CAIO = [
+  "Urna do Nordeste + Pintolândia acabou de sincronizar e colocou Msc. Caio na frente!",
+  "Valbert Breno soltou a planilha secreta de apuração às 21h50 e deu virada do Caio!",
   "Urna do Pintolândia rodou script em OpenGL + Blender 3D e virou o jogo pro Msc. Caio!",
   "Votos do bairro São Pedro chegaram via Google Talk (caiogrego@icomp.ufam.edu.br)!",
-  "Curso de Digitação 60h do SENAC (2002) permitiu digitar 400 votos por minuto na reta final!",
-  "Algoritmo de Detecção de Comportamento Anormal em Multidão virou a urna do Centro!",
-  "Bancada do Agronegócio + Linux de Rorainópolis e Hélio Campos colocou Caio na liderança!"
+  "Curso de Digitação 60h do SENAC (2002) permitiu digitar 400 votos por minuto antes das 22h!"
 ];
 
 const ACOES_SIMULADAS_ELEITORES = [
@@ -280,7 +280,9 @@ function inicializarEleitores() {
     const zona = ZONAS_RORAIMA[i % ZONAS_RORAIMA.length];
     const voto = (i % 2 === 0) ? "clenya" : "caio";
     const acao = nome.includes("WANDEILSON")
-      ? "👑 Criador do Sistema TSE-UERR (Admin Root)"
+      ? "👑 Criador do Site ('me manda uma foto deles aí, vou tentar fazer uma parada aq')"
+      : nome.includes("VALBERT BRENO")
+      ? "📊 Presidente da Comissão de Apuração ('Ah não pô, é até às 22h kkkk')"
       : ACOES_SIMULADAS_ELEITORES[i % ACOES_SIMULADAS_ELEITORES.length];
     todosEleitores.push({
       num: idx++,
@@ -639,20 +641,23 @@ function renderizarTabelaEleitores() {
   });
 }
 
-// 10. CHAT EM TEMPO REAL (COM BOTS DOS ALUNOS DO PDF + PERSISTÊNCIA LOCAL)
+// 10. CHAT EM TEMPO REAL (COM BOTS DOS ALUNOS DO PDF + PÉROLAS DO GRUPO)
 const MENSAGENS_BOTS_ZOACAO = [
-  { autor: "ADRIAN HARR RODRIGUES", bairro: "Canarinho", texto: "Rapaziada, quem ganhar vai cancelar a prova de Compiladores de amanhã???" },
-  { autor: "ALEXANDRE YUKIO OYAMA DE SOUZA", bairro: "Paraviana", texto: "Acabei de ver o Lattes da Dra. Clenya, 54 bancas de TCC! Ela já reprovou até meu pensamento kkkkk" },
-  { autor: "CAIO RODRIGO ALVES DE OLIVEIRA", bairro: "Pintolândia", texto: "Como orientando da Clenya no TCC de IA Generativa, declaro que meu voto é criptografado!" },
+  { autor: "Eleitor Ansioso do Grupo", bairro: "Canarinho", texto: "saiu o resultado, já? @Valbert Breno faz a apuração dos votos aí" },
+  { autor: "Fiscal do TSE-UERR", bairro: "Pintolândia", texto: "deixa o Valbert terminar de calibrar a planilha de apuração que jaja ele posta kkkkk" },
+  { autor: "VALBERT BRENO GOMES FARIAS", bairro: "Canarinho", texto: "Cadê, já encerrou? Espero que já saia!" },
+  { autor: "Analista de Geopolítica BCC", bairro: "Mecejana", texto: "Calma galera, tão contabilizando os votos do Nordeste ainda! 🌵🗳️" },
+  { autor: "VALBERT BRENO GOMES FARIAS", bairro: "Canarinho", texto: "As eleições ocorrerão das 08h às 22h... Ah não pô, é até às 22 kkkkkkkk" },
+  { autor: "WANDEILSON FERNANDES COSTA", bairro: "Boa Vista - RR", texto: "coe valbert, me manda uma foto deles ai, uma de cada... vou tentar fazer uma parada aq 💻🔥" },
+  { autor: "Comentarista de Urna", bairro: "São Pedro", texto: "KAKKEKWKDKkKKKKKKKKK olha a foto da urna, professor Caio tá no shape / inchado de tanto programar em C!" },
+  { autor: "ADRIAN HARR RODRIGUES", bairro: "Canarinho", texto: "Rapaziada, quem ganhar às 22h vai cancelar a prova de amanhã???" },
+  { autor: "ALEXANDRE YUKIO OYAMA DE SOUZA", bairro: "Paraviana", texto: "Acabei de ver o Lattes da Dra. Clenya, 54 bancas de TCC! Ela já avaliou até esse site kkkkk" },
+  { autor: "CAIO RODRIGO ALVES DE OLIVEIRA", bairro: "Pintolândia", texto: "Como orientando da Clenya no TCC de IA Generativa, declaro que meu voto foi compilado!" },
   { autor: "JOSE ARTHUR SANTANA ECHECHURRY CRUZ", bairro: "Caçari", texto: "Se o Prof. Caio ganhar, a matéria de Banco de Dados vai ser modelada no Blender 3D!" },
   { autor: "GELSON BARROS DOS SANTOS JUNIOR", bairro: "Mecejana", texto: "Alimentei minha LLM da UERR com os dois Lattes e a GPU pediu arrego 🔥" },
-  { autor: "ANDREY PONTE EVANGELISTA DE SOUSA", bairro: "Centro", texto: "Pelas diretrizes WCAG de acessibilidade, essa apuração tá dando taquicardia em 100% do curso!" },
-  { autor: "GABRIELA MONTEIRO ALEM", bairro: "São Pedro", texto: "Gente é verdade que o Caio ainda usa Google Talk em 2026?? Olhem a linha 32 do Lattes dele kkkkk" },
-  { autor: "FELLIPE PARAGUASSU FREIRIA DE OLIVEIRA", bairro: "Buritis", texto: "No Pintolândia a boca de urna tá aceitando Pix ou nota extra no SIGAA!" },
-  { autor: "PIETRA MARIA CHAVES DE OLIVEIRA", bairro: "Canarinho", texto: "Uma hora a Clenya ganha, 10 segundos depois o Caio vira... parece código com condição de corrida (Race Condition)!" },
-  { autor: "RICARDO ALEXANDRE RODRIGUES SANTA CRUZ FILHO", bairro: "Paraviana", texto: "Eu e meu pai estamos na lista do PDF! Voto em família vale dobrado no colegiado?" },
-  { autor: "WHILLBERT BARROS LOBO", bairro: "Asa Branca", texto: "Curso de Digitação 60h no SENAC em 2002 vs 24 cursos de Moodle na pandemia, os dois a 80km/h quem ganha?" },
-  { autor: "LARISSA CARVALHO LEITE DA SILVA", bairro: "Polo Pacaraima", texto: "Aqui em Pacaraima os votos estão descendo a BR-174 de caminhonete!" }
+  { autor: "GABRIELA MONTEIRO ALEM", bairro: "São Pedro", texto: "Gente é verdade que o Caio ainda tem Google Talk no Lattes em 2026?? Olhem a linha 32 kkkkk" },
+  { autor: "PIETRA MARIA CHAVES DE OLIVEIRA", bairro: "Canarinho", texto: "Uma hora a Clenya ganha, 9 segundos depois o Caio vira... parece Race Condition!" },
+  { autor: "WHILLBERT BARROS LOBO", bairro: "Asa Branca", texto: "Curso de Digitação 60h no SENAC em 2002 vs 24 cursos de Moodle, os dois a 80km/h até as 22h quem ganha?" }
 ];
 
 function popularSelectIdentidadeChat() {
