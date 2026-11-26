@@ -235,7 +235,7 @@ const ZONAS_RORAIMA = [
 // 2.5. DADOS OFICIAIS DO RELATÓRIO DAS ELEIÇÕES UERR (26/11/2026 às 11:43:23 - Págs. 1 a 6)
 const RELATORIO_OFICIAL_BCC = {
   dataGeracao: "26/11/2026 11:43:23",
-  urlOficial: "https://eleicoes.uerr.edu.br/coordenador2026/relatorio",
+  urlOficial: "https://uerr.edu.br/resultado-preliminar-da-eleicao-para-coordenador-de-curso/",
   clenya: {
     colocacao: 1,
     docente: 3,      // 3/5 * 70% = 42,00%
