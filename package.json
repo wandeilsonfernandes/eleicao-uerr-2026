@@ -1,0 +1,8 @@
+{
+  "name": "apuracao-uerr-bcc-2026",
+  "version": "1.0.0",
+  "description": "Site satírico de apuração em tempo real da eleição para Coordenação de Ciência da Computação UERR 2026 (Dra. Clenya vs Msc. Caio)",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}

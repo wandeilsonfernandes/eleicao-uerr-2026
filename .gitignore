@@ -1,0 +1,5 @@
+node_modules/
+.vercel/
+docs_referencia/
+.DS_Store
+Thumbs.db

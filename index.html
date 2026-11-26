@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TSE-UERR 2026 | Apuração Oficial (SQN) - Coordenação Ciência da Computação</title>
+  <meta name="description" content="Acompanhe em tempo real a apuração mais tensa de Roraima: Eleição para Coordenação de Ciência da Computação UERR 2027/2029 - Dra. Clenya vs Msc. Caio Gregoratto" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- TOP BREAKING NEWS TICKER -->
+  <div class="top-ticker">
+    <div class="ticker-badge">
+      <span class="pulse-dot"></span> PLANTÃO TSE-UERR
+    </div>
+    <div class="ticker-track">
+      <div class="ticker-content" id="newsTicker">
+        <span>🚨 URGENTE: Urna do Laboratório 3 teve que rodar em Dual Boot após falha no Windows 11!</span>
+        <span>•</span>
+        <span>📊 BOCA DE URNA NO PINTOLÂNDIA: Votos compilados em C++ mostram virada histórica nos últimos 30 segundos!</span>
+        <span>•</span>
+        <span>☕ DENÚNCIA: Candidato promete liberar café grátis e servidor de Minecraft no Lab de Redes se vencer no Canarinho!</span>
+        <span>•</span>
+        <span>📄 SEI/GRR - 25061245: 73 acadêmicos e 6 docentes efetivos da Computação aptos a decidir o destino do curso!</span>
+        <span>•</span>
+        <span>⚡ TENSÃO EM RORAIMA: DataFolha-UERR aponta margem de erro de ±42% dependendo de quem corrigir o TCC!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="coat-of-arms">🖥️</div>
+        <div class="brand-text">
+          <div class="brand-eyebrow">TRIBUNAL SUPERIOR DE COMPILAÇÃO ELEITORAL • RORAIMA</div>
+          <h1>APURAÇÃO COORDENAÇÃO BCC — UERR <span class="year-badge">2026</span></h1>
+          <p class="subtitle">Biênio 2027/2029 • Edital 01/2026 • Processo SEI 17201.002442/2026.74 <a href="https://eleicoes.uerr.edu.br/coordenador2026/" target="_blank" rel="noopener" class="official-link">🔗 Portal Oficial UERR</a></p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="status-pill">
+          <span class="live-indicator"></span>
+          <span id="cycleStatusText">APURAÇÃO EM TEMPO REAL</span>
+        </div>
+        <div class="action-buttons">
+          <button class="btn btn-turn" id="btnForceFlip" title="Forçar uma virada dramática agora!">
+            ⚡ FORÇAR VIRADA
+          </button>
+          <button class="btn btn-urna" id="btnOpenUrna" title="Simular seu voto na Urna Eletrônica">
+            🗳️ VOTAR NA URNA
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="container main-grid">
+
+    <!-- HERO SCOREBOARD (LEFT / FULL TOP) -->
+    <section class="scoreboard-card card-glass">
+      <div class="scoreboard-header">
+        <div class="urnas-progress">
+          <span class="mono-label">SEÇÕES APURADAS (BAIRROS DE BOA VISTA + INTERIOR RR):</span>
+          <strong id="urnasPct" class="mono-val">99,42%</strong>
+          <span class="sub-detail">(Loop infinito de recontagem recursiva ativado)</span>
+        </div>
+        <div class="turn-timer">
+          <span class="mono-label">PRÓXIMO LOTE DE URNAS EM:</span>
+          <span id="nextBatchTimer" class="timer-badge">08s</span>
+        </div>
+      </div>
+
+      <!-- CANDIDATES DUEL -->
+      <div class="duel-grid">
+        <!-- CANDIDATE 1: CLENYA -->
+        <div class="candidate-box clenya-box" id="cardClenya">
+          <div class="leader-crown" id="crownClenya">👑 NA FRENTE (MATEMATICAMENTE COMPILADA)</div>
+          <div class="cand-top">
+            <div class="avatar-wrap clenya-ring">
+              <img src="clenya.gif" alt="Dra. Clenya Rejane Barros de Lima" class="cand-avatar" />
+              <span class="cand-number">CHAPA 10</span>
+            </div>
+            <div class="cand-info">
+              <span class="cand-party">PES — Partido da Engenharia de Software &amp; Moodle EaD</span>
+              <h2>Dra. Clenya Rejane Barros de Lima</h2>
+              <p class="cand-slogan">"Por um curso com 100% de Usabilidade, Normas ABNT e 54 Bancas de TCC por semestre!"</p>
+            </div>
+          </div>
+          <div class="cand-stats">
+            <div class="pct-display" id="pctClenya">50,63%</div>
+            <div class="votes-display">
+              <span id="votesClenya">40</span> votos ponderados
+              <span class="raw-detail" id="rawClenya">(37 alunos • 3 profs)</span>
+            </div>
+          </div>
+          <div class="cand-tags">
+            <span class="tag">🎓 Doutora UNIRIO</span>
+            <span class="tag">📋 Rainha das Bancas (54 TCCs)</span>
+            <span class="tag">🌐 Mestre CESAR.edu</span>
+          </div>
+        </div>
+
+        <!-- VS DIVIDER -->
+        <div class="vs-column">
+          <div class="vs-circle">VS</div>
+          <div class="diff-box">
+            <span class="diff-label">DIFERENÇA ATUAL</span>
+            <strong id="voteDiff" class="diff-val">1 VOTO</strong>
+            <span id="leadReason" class="lead-reason">Urna do Canarinho acabou de entrar!</span>
+          </div>
+        </div>
+
+        <!-- CANDIDATE 2: CAIO -->
+        <div class="candidate-box caio-box" id="cardCaio">
+          <div class="leader-crown" id="crownCaio" style="display:none;">👑 NA FRENTE (RENDERIZADO EM 60 FPS)</div>
+          <div class="cand-top">
+            <div class="avatar-wrap caio-ring">
+              <img src="caio.gif" alt="Msc. Caio de Jesus Gregoratto" class="cand-avatar" />
+              <span class="cand-number">CHAPA 20</span>
+            </div>
+            <div class="cand-info">
+              <span class="cand-party">P3D — Partido do Blender 3D, Visão Computacional &amp; AgroTech</span>
+              <h2>Msc. Caio de Jesus Gregoratto</h2>
+              <p class="cand-slogan">"Menos ABNT, mais OpenGL, Detecção de Multidões e GPS para Agropecuária no Linux!"</p>
+            </div>
+          </div>
+          <div class="cand-stats">
+            <div class="pct-display" id="pctCaio">49,37%</div>
+            <div class="votes-display">
+              <span id="votesCaio">39</span> votos ponderados
+              <span class="raw-detail" id="rawCaio">(36 alunos • 3 profs)</span>
+            </div>
+          </div>
+          <div class="cand-tags">
+            <span class="tag">🎨 Mestre UFAM</span>
+            <span class="tag">🌾 Bacharel Agronegócios + BCC</span>
+            <span class="tag">🐧 Linux &amp; Digitação SENAC 60h</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TUG OF WAR BAR -->
+      <div class="tug-of-war-wrap">
+        <div class="tug-labels">
+          <span class="clenya-text">🟣 DRA. CLENYA (<span id="barLabelClenya">50.6%</span>)</span>
+          <span class="tug-center-label">⚡ CABO DE GUERRA ELEITORAL (50% = EMPATE TÉCNICO NO SIGAA)</span>
+          <span class="caio-text">🟢 MSC. CAIO (<span id="barLabelCaio">49.4%</span>)</span>
+        </div>
+        <div class="tug-bar">
+          <div class="tug-fill-clenya" id="barClenya" style="width: 50.63%;"></div>
+          <div class="tug-marker"></div>
+          <div class="tug-fill-caio" id="barCaio" style="width: 49.37%;"></div>
+        </div>
+      </div>
+
+      <!-- LIVE LOG STREAM -->
+      <div class="live-event-banner" id="liveEventBanner">
+        <span class="event-icon">📡</span>
+        <span class="event-time" id="eventTime">21:05:12</span>
+        <span class="event-msg" id="eventMsg">Boletim de Urna #404 recebido de <strong>Canarinho (Sede UERR)</strong>: Dra. Clenya assume a liderança por 1 voto após recontagem no Moodle!</span>
+      </div>
+    </section>
+
+    <!-- MAP & NEIGHBORHOODS + LIVE CHAT ROW -->
+    <div class="content-columns">
+      
+      <!-- LEFT COLUMN: GEOPOLITICAL MAP OF RORAIMA & BOA VISTA -->
+      <section class="map-section card-glass">
+        <div class="section-header">
+          <div>
+            <h2>🗺️ Mapa Geopolítico da Apuração em Roraima</h2>
+            <p class="section-sub">Clique nos bairros de Boa Vista ou municípios de RR para inspecionar os votos dos alunos e servidores</p>
+          </div>
+          <div class="map-view-tabs">
+            <button class="tab-btn active" data-view="boavista" id="tabBoaVista">🏙️ Bairros de Boa Vista</button>
+            <button class="tab-btn" data-view="roraima" id="tabRoraima">🌴 Municípios de Roraima</button>
+          </div>
+        </div>
+
+        <div class="map-legend">
+          <span class="legend-item"><i class="dot clenya-dot"></i> Domínio Dra. Clenya (Eng. Software / EaD)</span>
+          <span class="legend-item"><i class="dot caio-dot"></i> Domínio Msc. Caio (Blender 3D / Agro-Linux)</span>
+          <span class="legend-item"><i class="dot tied-dot"></i> Disputa Voto a Voto (Zona de Conflito)</span>
+        </div>
+
+        <div class="map-workspace">
+          <div id="roraimaMap" class="leaflet-map-box"></div>
+          
+          <!-- SELECTED ZONE INSPECTOR -->
+          <div class="zone-inspector" id="zoneInspector">
+            <div class="zone-badge" id="zoneTypeBadge">ZONA ELEITORAL • BAIRRO DE BOA VISTA</div>
+            <h3 id="zoneTitle">Canarinho (Sede UERR - R. Sete de Setembro)</h3>
+            <p class="zone-lore" id="zoneLore">Epicentro nervoso da eleição. Aqui o Wi-Fi cai, mas a urna eletrônica roda em servidor local.</p>
+            
+            <div class="zone-bars">
+              <div class="z-row">
+                <div class="z-head">
+                  <span>🟣 Dra. Clenya</span>
+                  <strong id="zoneClenyaPct">54.5% (6 votos)</strong>
+                </div>
+                <div class="z-progress"><div class="z-fill clenya-bg" id="zoneClenyaBar" style="width:54.5%"></div></div>
+              </div>
+              <div class="z-row">
+                <div class="z-head">
+                  <span>🟢 Msc. Caio</span>
+                  <strong id="zoneCaioPct">45.5% (5 votos)</strong>
+                </div>
+                <div class="z-progress"><div class="z-fill caio-bg" id="zoneCaioBar" style="width:45.5%"></div></div>
+              </div>
+            </div>
+
+            <div class="zone-voters-box">
+              <span class="mono-label">ELEITORES DO PDF (SEI 25061245) ALOCADOS NESTA SEÇÃO:</span>
+              <ul class="zone-voter-list" id="zoneVoterList"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEIGHBORHOOD CARDS GRID -->
+        <div class="bairros-header">
+          <h3>🏘️ Painel por Bairros de Boa Vista &amp; Polos de Roraima</h3>
+          <span class="mono-label">Atualizado a cada lote de apuração</span>
+        </div>
+        <div class="bairros-grid" id="bairrosGrid"></div>
+      </section>
+
+      <!-- RIGHT COLUMN: LIVE CHAT &MEME FEED -->
+      <aside class="chat-sidebar card-glass">
+        <div class="chat-header">
+          <div class="chat-title-row">
+            <h2>💬 Chat da Apuração (Ao Vivo)</h2>
+            <span class="online-count"><span class="pulse-dot"></span> <span id="onlineUsersCount">79</span> online</span>
+          </div>
+          <p class="section-sub">Comente como aluno do PDF, mande memes ou espalhe teorias da conspiração</p>
+        </div>
+
+        <!-- IDENTITY PICKER -->
+        <div class="chat-identity-bar">
+          <label for="chatIdentitySelect">Comentar como:</label>
+          <select id="chatIdentitySelect" class="identity-select">
+            <option value="Anônimo do Lab 2">🕵️ Anônimo do Lab 2</option>
+            <option value="Calouro Sofredor de Cálculo">👶 Calouro Sofredor de Cálculo</option>
+            <option value="Veterano Sem Orientador">🧓 Veterano Sem Orientador</option>
+          </select>
+        </div>
+
+        <!-- MESSAGES STREAM -->
+        <div class="chat-messages" id="chatMessages"></div>
+
+        <!-- QUICK REACTION BUTTONS -->
+        <div class="quick-reactions">
+          <button class="react-btn" data-msg="VIROU NO PINTOLÂNDIA! 🔥🔥🔥">🔥 Virou!</button>
+          <button class="react-btn" data-msg="STOP THE COUNT! Para a contagem que meu candidato tá ganhando! 🛑">🛑 Stop the Count!</button>
+          <button class="react-btn" data-msg="Quem ganhar vai liberar o ar-condicionado no máximo? ❄️">❄️ Ar-condicionado</button>
+          <button class="react-btn" data-msg="Dr. Clenya já me colocou em 3 bancas só porque abri esse site 📚">📚 Banca TCC</button>
+          <button class="react-btn" data-msg="Caio prometeu substituir Cálculo II por Modelagem no Blender 3D 🍩">🍩 Blender 3D</button>
+        </div>
+
+        <!-- INPUT FORM -->
+        <form class="chat-input-form" id="chatForm">
+          <input 
+            type="text" 
+            id="chatInput" 
+            placeholder="Mande sua mensagem no chat da apuração..." 
+            maxlength="220"
+            autocomplete="off"
+            required
+          />
+          <button type="submit" class="btn-send">Enviar 🚀</button>
+        </form>
+      </aside>
+
+    </div>
+
+    <!-- LATTES DUEL SECTION (CURRICULUM SATIRE) -->
+    <section class="lattes-section card-glass">
+      <div class="section-header">
+        <div>
+          <h2>📜 Duelo de Currículos Lattes (Dados Reais Extraídos da Pasta!)</h2>
+          <p class="section-sub">Comparativo oficial linha por linha dos arquivos <code>currciulo lattes clenya.txt</code> (830 linhas!) vs <code>curriculo lattes.txt</code> (247 linhas)</p>
+        </div>
+        <div class="lattes-badge">CNPq / Plataforma Lattes • Verificado em 25/11/2026</div>
+      </div>
+
+      <div class="lattes-duel-grid">
+        <!-- CLENYA LATTES -->
+        <div class="lattes-card clenya-lattes">
+          <div class="lattes-card-head">
+            <img src="clenya.gif" alt="Clenya" />
+            <div>
+              <h3>Dra. Clenya Rejane Barros de Lima</h3>
+              <a href="http://lattes.cnpq.br/6497355320740230" target="_blank" rel="noopener">ID Lattes: 6497355320740230</a>
+            </div>
+          </div>
+          <ul class="lattes-list">
+            <li><strong>Titulação Máxima:</strong> Doutorado em Ciências (UNIRIO, 2021) — <em>"Aprendizado de Máquina em Cuidados Intensivos: Análise Cientométrica"</em>.</li>
+            <li><strong>Mestrado:</strong> Engenharia de Software (CESAR.edu, Recife, 2016) — Avaliou a usabilidade do Portal da Transparência de Roraima!</li>
+            <li><strong>Overkill de Especializações:</strong> 3 Pós-Graduações (Eng. de Software UFLA, EaD UFRR, Informática na Educação UNINTER) + Aperfeiçoamento 480h.</li>
+            <li><strong>Maratona de Cursos em 2020:</strong> Fez mais de <strong>24 cursos de extensão</strong> só no ano de 2020 (Moodle, Gamificação, Normas da ABNT 50h, Mapas Mentais, SEI! USAR).</li>
+            <li><strong>Onipresença em Bancas:</strong> Participou de impressionantes <strong>54 bancas de TCC de graduação</strong> na UERR, 8 de especialização, 2 de doutorado e 1 de mestrado!</li>
+            <li><strong>Poder Especial no Curso:</strong> Se você já fez TCC na UERR entre 2013 e 2026, existe 94,7% de chance da Dra. Clenya estar na sua ata de defesa.</li>
+          </ul>
+        </div>
+
+        <!-- STATS COMPARISON CENTER -->
+        <div class="lattes-radar-col">
+          <div class="comp-metric">
+            <span class="m-title">Linhas no Arquivo .TXT do Lattes</span>
+            <div class="m-bars">
+              <span class="m-val clenya-c">830 linhas</span>
+              <div class="m-track"><div class="m-fill-l" style="width: 77%"></div><div class="m-fill-r" style="width: 23%"></div></div>
+              <span class="m-val caio-c">247 linhas</span>
+            </div>
+          </div>
+
+          <div class="comp-metric">
+            <span class="m-title">Graduações no Currículo</span>
+            <div class="m-bars">
+              <span class="m-val clenya-c">SI + Lic. Comp</span>
+              <div class="m-track"><div class="m-fill-l" style="width: 50%"></div><div class="m-fill-r" style="width: 50%"></div></div>
+              <span class="m-val caio-c">Agronegócios + BCC</span>
+            </div>
+          </div>
+
+          <div class="comp-metric">
+            <span class="m-title">Cursos de Moodle &amp; ABNT vs Cursos de Blender &amp; GPS</span>
+            <div class="m-bars">
+              <span class="m-val clenya-c">18 Moodle/EaD</span>
+              <div class="m-track"><div class="m-fill-l" style="width: 65%"></div><div class="m-fill-r" style="width: 35%"></div></div>
+              <span class="m-val caio-c">Blender + GPS Agro</span>
+            </div>
+          </div>
+
+          <div class="comp-metric">
+            <span class="m-title">Curso Lendário do SENAC-RR</span>
+            <div class="m-bars">
+              <span class="m-val clenya-c">Montagem Micro (2005)</span>
+              <div class="m-track"><div class="m-fill-l" style="width: 50%"></div><div class="m-fill-r" style="width: 50%"></div></div>
+              <span class="m-val caio-c">Digitação 60h (2002)</span>
+            </div>
+          </div>
+
+          <div class="comp-metric">
+            <span class="m-title">Contato Relíquia no Lattes</span>
+            <div class="m-bars">
+              <span class="m-val clenya-c">ORCID Oficial</span>
+              <div class="m-track"><div class="m-fill-l" style="width: 45%"></div><div class="m-fill-r" style="width: 55%"></div></div>
+              <span class="m-val caio-c">Google Talk (!?)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CAIO LATTES -->
+        <div class="lattes-card caio-lattes">
+          <div class="lattes-card-head">
+            <img src="caio.gif" alt="Caio" />
+            <div>
+              <h3>Msc. Caio de Jesus Gregoratto</h3>
+              <a href="http://lattes.cnpq.br/7921625025564103" target="_blank" rel="noopener">ID Lattes: 7921625025564103</a>
+            </div>
+          </div>
+          <ul class="lattes-list">
+            <li><strong>Titulação Máxima:</strong> Mestrado em Informática (UFAM, 2016) — <em>"Detecção de Comportamento Anormal em Vídeos de Multidão"</em> (já sabe detectar tumulto no corredor do bloco!).</li>
+            <li><strong>Dupla Graduação Inusitada:</strong> Graduado em <strong>Gestão de Agronegócios</strong> (Cathedral, 2008) E <strong>Ciência da Computação</strong> (UFRR, 2013) + Especialista em Gestão de Projetos TI.</li>
+            <li><strong>Cursos Raiz de Computação Gráfica:</strong> OpenGL e C, VRML (Realidade Virtual na Internet em 2011!), Álgebra de Lie, Blender 3D e Photoshop CS3 Avançado.</li>
+            <li><strong>Skill Secreta Imbatível:</strong> Possui certificado oficial de <strong>Digitação (60h) no SENAC-RR em 2002</strong> e <strong>GPS para a Agropecuária (40h) em 2006</strong>.</li>
+            <li><strong>Arqueologia Digital:</strong> Até hoje mantém no Currículo Lattes o contato <code>Google Talk: caiogrego@icomp.ufam.edu.br</code>.</li>
+            <li><strong>Poder Especial no Curso:</strong> Consegue configurar um servidor PostgreSQL no Linux enquanto modela um trator em 3D no Blender sem olhar para o teclado.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFICIAL VOTERS LIST FROM THE PDF -->
+    <section class="voters-section card-glass">
+      <div class="section-header">
+        <div>
+          <h2>📋 Lista Oficial de Eleitores Aptos — Ciência da Computação (PDF SEI/GRR - 25061245)</h2>
+          <p class="section-sub">Todos os <strong>73 acadêmicos</strong> (págs. 26–28 do PDF) + <strong>docentes e técnicos de informática</strong> da UERR rastreados em tempo real por bairro de Roraima!</p>
+        </div>
+        <div class="voters-filters">
+          <input type="text" id="voterSearchInput" placeholder="🔍 Buscar seu nome na lista do SEI..." class="search-input" />
+          <select id="voterCategoryFilter" class="filter-select">
+            <option value="all">Todos os Eleitores (85)</option>
+            <option value="Acadêmico BCC">🎓 Acadêmicos Ciência da Computação (73)</option>
+            <option value="Docente Efetivo">👨‍🏫 Professores do Curso / Banca (6)</option>
+            <option value="Técnico TI">🛠️ Analistas / Técnicos em Informática (6)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="voters-stats-bar">
+        <div class="v-stat">Total na Lista: <strong id="statTotalVoters">85</strong></div>
+        <div class="v-stat clenya-stat">Declarados/Simulados Dra. Clenya: <strong id="statClenyaVoters">43</strong></div>
+        <div class="v-stat caio-stat">Declarados/Simulados Msc. Caio: <strong id="statCaioVoters">42</strong></div>
+        <div class="v-stat">Status: <strong>🔄 Muda a cada recontagem de bairro!</strong></div>
+      </div>
+
+      <div class="voters-table-wrap">
+        <table class="voters-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nome no Documento SEI (Edital 01/2026)</th>
+              <th>Categoria / Vínculo</th>
+              <th>Bairro / Polo Alocado (RR)</th>
+              <th>Status da Urna (Simulação)</th>
+              <th>Última Ação Detectada</th>
+            </tr>
+          </thead>
+          <tbody id="votersTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container footer-inner">
+      <div class="creator-credit">
+        💻 Desenvolvido com muito café e zero normas ABNT por <strong>Wandeilson Fernandes</strong> (Acadêmico de Ciência da Computação — UERR • Eleitor Oficial SEI #71) 🚀
+      </div>
+      <p>⚠️ <strong>AVISO DE SÁTIRA ACADÊMICA:</strong> Este site é uma paródia humorística criada para celebrar a eleição de Coordenação do Curso de Ciência da Computação da UERR (Biênio 2027/2029). Todos os votos, mapas por bairros e mensagens automáticas de chat são 100% simulados para fins de entretenimento.</p>
+      <p class="footer-links">
+        Portal Oficial da Eleição: <a href="https://eleicoes.uerr.edu.br/coordenador2026/" target="_blank" rel="noopener">eleicoes.uerr.edu.br/coordenador2026</a> • 
+        Candidatos: <strong>Dra. Clenya Rejane Barros de Lima</strong> &amp; <strong>Msc. Caio de Jesus Gregoratto</strong>
+      </p>
+    </div>
+  </footer>
+
+  <!-- URNA ELETRÔNICA MODAL -->
+  <div class="modal-backdrop" id="urnaModal" style="display: none;">
+    <div class="urna-device">
+      <div class="urna-top-bar">
+        <span>JUSTIÇA ELEITORAL COMPILADA — UERR 2026</span>
+        <button class="urna-close" id="btnCloseUrna">✖ Fechar</button>
+      </div>
+      <div class="urna-body">
+        <!-- URNA SCREEN -->
+        <div class="urna-screen" id="urnaScreen">
+          <div class="urna-screen-header">SEU VOTO PARA</div>
+          <div class="urna-role">COORDENADOR(A) DE CIÊNCIA DA COMPUTAÇÃO</div>
+          <div class="urna-number-row">
+            <span>Número:</span>
+            <div class="digit-box" id="digit1"></div>
+            <div class="digit-box" id="digit2"></div>
+          </div>
+          <div class="urna-candidate-preview" id="urnaPreview" style="display: none;">
+            <img id="urnaCandImg" src="" alt="Candidato" />
+            <div class="urna-cand-details">
+              <div id="urnaCandName" class="u-name"></div>
+              <div id="urnaCandParty" class="u-party"></div>
+              <div id="urnaCandSlogan" class="u-slogan"></div>
+            </div>
+          </div>
+          <div class="urna-hint" id="urnaHint">
+            Digite <strong>10</strong> para Dra. Clenya ou <strong>20</strong> para Msc. Caio
+          </div>
+          <div class="urna-footer-instructions">
+            Aperte a tecla:<br/>
+            <strong>VERDE</strong> para CONFIRMAR este voto<br/>
+            <strong>LARANJA</strong> para CORRIGIR este voto
+          </div>
+        </div>
+
+        <!-- URNA KEYPAD -->
+        <div class="urna-keypad-panel">
+          <div class="urna-logo-strip">
+            <span>🖥️ TSE-UERR</span>
+          </div>
+          <div class="keypad-numbers">
+            <button class="num-key" data-num="1">1</button>
+            <button class="num-key" data-num="2">2</button>
+            <button class="num-key" data-num="3">3</button>
+            <button class="num-key" data-num="4">4</button>
+            <button class="num-key" data-num="5">5</button>
+            <button class="num-key" data-num="6">6</button>
+            <button class="num-key" data-num="7">7</button>
+            <button class="num-key" data-num="8">8</button>
+            <button class="num-key" data-num="9">9</button>
+            <button class="num-key zero-key" data-num="0">0</button>
+          </div>
+          <div class="keypad-actions">
+            <button class="act-key key-branco" id="keyBranco">BRANCO</button>
+            <button class="act-key key-corrige" id="keyCorrige">CORRIGE</button>
+            <button class="act-key key-confirma" id="keyConfirma">CONFIRMA</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <!-- Main Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
