@@ -1083,7 +1083,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btnCloseVictory").addEventListener("click", fecharTelaVitoriaFuzue);
 
   document.getElementById("btnFuzueHorn").addEventListener("click", () => {
-    tocarFanfarraFuzue();
+    tocarPirililimUrna();
+    setTimeout(tocarFanfarraFuzue, 550);
     explodirFogosExtras();
   });
 });
@@ -1132,9 +1133,26 @@ const DADOS_VITORIA = {
   }
 };
 
+let audioCtxGlobal = null;
+let somVitoriaJaTocou = false;
+
+function obterAudioCtx() {
+  if (!audioCtxGlobal) {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (AudioCtx) audioCtxGlobal = new AudioCtx();
+  }
+  return audioCtxGlobal;
+}
+
 function tocarPirililimUrna() {
   try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const ctx = obterAudioCtx();
+    if (!ctx) return false;
+    if (ctx.state === "suspended") {
+      ctx.resume();
+    }
+    if (ctx.state !== "running") return false;
+
     const notas = [
       { f: 987.77, t: 0, d: 0.09 },
       { f: 1318.51, t: 0.09, d: 0.09 },
@@ -1148,19 +1166,28 @@ function tocarPirililimUrna() {
       const gain = ctx.createGain();
       osc.type = "square";
       osc.frequency.setValueAtTime(n.f, ctx.currentTime + n.t);
-      gain.gain.setValueAtTime(0.12, ctx.currentTime + n.t);
+      gain.gain.setValueAtTime(0.14, ctx.currentTime + n.t);
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start(ctx.currentTime + n.t);
       osc.stop(ctx.currentTime + n.t + n.d);
     });
-  } catch (e) {}
+    return true;
+  } catch (e) {
+    return false;
+  }
 }
 
 function tocarFanfarraFuzue() {
   try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    // Fanfarra + Buzinaço de festa
+    const ctx = obterAudioCtx();
+    if (!ctx) return false;
+    if (ctx.state === "suspended") {
+      ctx.resume();
+    }
+    if (ctx.state !== "running") return false;
+
+    // Fanfarra + Buzinaço de festa da vitória da Dra. Clenya
     const seq = [
       { f: 523.25, t: 0.0, d: 0.14 },
       { f: 659.25, t: 0.15, d: 0.14 },
@@ -1174,14 +1201,66 @@ function tocarFanfarraFuzue() {
       const gain = ctx.createGain();
       osc.type = "sawtooth";
       osc.frequency.setValueAtTime(n.f, ctx.currentTime + n.t);
-      gain.gain.setValueAtTime(0.11, ctx.currentTime + n.t);
+      gain.gain.setValueAtTime(0.13, ctx.currentTime + n.t);
       gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + n.t + n.d);
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start(ctx.currentTime + n.t);
       osc.stop(ctx.currentTime + n.t + n.d);
     });
-  } catch (e) {}
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function tocarSomVitoriaCompleto() {
+  const ctx = obterAudioCtx();
+  if (!ctx) return;
+
+  const dispararAudio = () => {
+    const ok = tocarPirililimUrna();
+    if (ok) {
+      somVitoriaJaTocou = true;
+      setTimeout(tocarFanfarraFuzue, 550);
+    }
+  };
+
+  if (ctx.state === "suspended") {
+    ctx.resume().then(() => {
+      if (ctx.state === "running") {
+        dispararAudio();
+      }
+    }).catch(() => {});
+  } else {
+    dispararAudio();
+  }
+}
+
+// Desbloqueia e toca imediatamente o som da vitória da Dra. Clenya no primeiro clique/toque/tecla caso o navegador bloqueie autoplay sem gesto
+function configurarDesbloqueioSomAutoplay() {
+  const desbloquear = () => {
+    if (somVitoriaJaTocou) {
+      limparListeners();
+      return;
+    }
+    const ctx = obterAudioCtx();
+    if (!ctx) return;
+    ctx.resume().then(() => {
+      if (!somVitoriaJaTocou && ctx.state === "running") {
+        somVitoriaJaTocou = true;
+        tocarPirililimUrna();
+        setTimeout(tocarFanfarraFuzue, 550);
+        limparListeners();
+      }
+    }).catch(() => {});
+  };
+
+  const eventos = ["pointerdown", "click", "touchstart", "keydown"];
+  function limparListeners() {
+    eventos.forEach(ev => window.removeEventListener(ev, desbloquear, true));
+  }
+  eventos.forEach(ev => window.addEventListener(ev, desbloquear, { capture: true, passive: true }));
 }
 
 function dispararTelaVitoriaFuzue(vencedor) {
@@ -1215,8 +1294,9 @@ function dispararTelaVitoriaFuzue(vencedor) {
   });
 
   overlay.style.display = "flex";
-  tocarPirililimUrna();
-  setTimeout(tocarFanfarraFuzue, 550);
+  somVitoriaJaTocou = false;
+  tocarSomVitoriaCompleto();
+  configurarDesbloqueioSomAutoplay();
   iniciarChuvaConfeteEFogos(vencedor);
 }
 
