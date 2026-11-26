@@ -1846,22 +1846,9 @@ body {
   border-color: #ef4444;
 }
 
-@media (max-width: 750px) {
-  .victory-hero-row,
-  .vic-score-pills,
-  .decrees-list {
-    grid-template-columns: 1fr;
-  }
-  .victory-photo-frame {
-    margin: 0 auto;
-  }
-  .vic-name {
-    font-size: 1.45rem;
-    text-align: center;
-  }
-}
-
-/* RESPONSIVE */
+/* =====================================================
+   RESPONSIVE & MOBILE OPTIMIZATION (CELULAR / TABLET)
+===================================================== */
 @media (max-width: 1100px) {
   .duel-grid,
   .content-columns,
@@ -1870,21 +1857,525 @@ body {
     grid-template-columns: 1fr;
   }
   .chat-sidebar {
-    height: 560px;
+    height: 540px;
     position: static;
   }
   .vs-column {
     flex-direction: row;
-    padding: 0.5rem 0;
+    padding: 0.35rem 0;
   }
 }
 
-@media (max-width: 650px) {
-  .urna-body {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
   }
+
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  /* Top Ticker */
+  .top-ticker {
+    height: 30px;
+    font-size: 0.74rem;
+  }
+  .ticker-badge {
+    padding: 0 0.6rem;
+    font-size: 0.68rem;
+  }
+
+  /* Header compacto no celular (não trava metade da tela) */
+  .main-header {
+    position: relative;
+    padding: 0.85rem 0;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .brand {
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .coat-of-arms {
+    width: 42px;
+    height: 42px;
+    font-size: 1.35rem;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .brand-eyebrow {
+    font-size: 0.62rem;
+    line-height: 1.2;
+  }
+
+  .brand-text h1 {
+    font-size: 1.05rem;
+    line-height: 1.25;
+  }
+
+  .year-badge {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.45rem;
+  }
+
+  .subtitle {
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  .header-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
+    width: 100%;
+  }
+
+  .status-pill {
+    justify-content: center;
+    font-size: 0.7rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  /* Grade 2x2 para os 4 botões de ação no celular */
+  .action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.45rem;
+    width: 100%;
+  }
+
+  .btn {
+    justify-content: center;
+    padding: 0.55rem 0.5rem;
+    font-size: 0.73rem;
+    border-radius: 8px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* Cards gerais */
+  .main-grid {
+    padding-top: 0.85rem;
+    padding-bottom: 2rem;
+    gap: 1rem;
+  }
+
+  .card-glass {
+    padding: 0.95rem;
+    border-radius: 14px;
+  }
+
+  /* Placar / Scoreboard */
+  .scoreboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .urnas-progress .sub-detail {
+    display: block;
+    margin-left: 0;
+    margin-top: 0.15rem;
+    font-size: 0.7rem;
+  }
+
+  .turn-timer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.4rem 0.65rem;
+    border-radius: 8px;
+  }
+
+  .candidate-box {
+    padding: 1rem 0.85rem;
+    margin-top: 0.35rem;
+  }
+
+  .leader-crown {
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 0.64rem;
+    padding: 0.18rem 0.65rem;
+  }
+
   .cand-top {
     flex-direction: column;
     text-align: center;
+    gap: 0.75rem;
+  }
+
+  .cand-avatar {
+    width: 82px;
+    height: 82px;
+  }
+
+  .cand-info h2 {
+    font-size: 1.08rem;
+  }
+
+  .cand-slogan {
+    font-size: 0.75rem;
+  }
+
+  .cand-stats {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.65rem;
+    margin: 0.8rem 0;
+    gap: 0.25rem;
+  }
+
+  .pct-display {
+    font-size: 1.9rem;
+  }
+
+  .votes-display {
+    text-align: center;
+    font-size: 0.82rem;
+  }
+
+  .cand-tags {
+    justify-content: center;
+  }
+
+  .tag {
+    font-size: 0.68rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .vs-column {
+    flex-direction: column;
+    min-width: unset;
+    gap: 0.5rem;
+  }
+
+  .vs-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  /* Cabo de Guerra */
+  .tug-labels {
+    font-size: 0.7rem;
+    gap: 0.25rem;
+  }
+
+  .tug-center-label {
+    order: 3;
+    width: 100%;
+    text-align: center;
+    font-size: 0.66rem;
+    margin-top: 0.15rem;
+  }
+
+  .live-event-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  /* Mapa e Bairros */
+  .section-header h2 {
+    font-size: 1.05rem;
+  }
+
+  .map-view-tabs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tab-btn {
+    text-align: center;
+    padding: 0.45rem 0.4rem;
+    font-size: 0.73rem;
+  }
+
+  .map-legend {
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+  }
+
+  .leaflet-map-box {
+    height: 265px;
+  }
+
+  .zone-inspector {
+    padding: 0.85rem;
+  }
+
+  .zone-inspector h3 {
+    font-size: 0.96rem;
+  }
+
+  .bairros-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .bairros-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem;
+  }
+
+  .bairro-card {
+    padding: 0.65rem;
+  }
+
+  .b-name {
+    font-size: 0.78rem;
+  }
+
+  .b-nums {
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.68rem;
+  }
+
+  /* Chat no Celular */
+  .chat-sidebar {
+    height: 490px;
+  }
+
+  .chat-identity-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.3rem;
+  }
+
+  .identity-select {
+    width: 100%;
+  }
+
+  .quick-reactions {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.3rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .react-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Duelo de Lattes no Celular */
+  .lattes-card {
+    padding: 0.9rem;
+  }
+
+  .m-bars {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .clenya-c, .caio-c {
+    width: 100%;
+    text-align: center;
+  }
+
+  .m-track {
+    width: 100%;
+  }
+
+  /* Tabela de Eleitores no Celular */
+  .voters-filters {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .search-input, .filter-select {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .voters-stats-bar {
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.65rem 0.8rem;
+    font-size: 0.76rem;
+  }
+
+  .voters-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .voters-table {
+    min-width: 560px;
+    font-size: 0.75rem;
+  }
+
+  .voters-table th, .voters-table td {
+    padding: 0.5rem 0.65rem;
+  }
+
+  /* Rodapé */
+  .creator-credit {
+    font-size: 0.76rem;
+    padding: 0.55rem 0.85rem;
+    border-radius: 14px;
+    line-height: 1.35;
+  }
+
+  /* Modal da Urna Eletrônica no Celular */
+  .modal-backdrop {
+    padding: 0.5rem;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .urna-device {
+    margin: auto 0;
+    max-height: 94vh;
+    overflow-y: auto;
+  }
+
+  .urna-body {
+    grid-template-columns: 1fr;
+    padding: 0.85rem;
+    gap: 0.85rem;
+  }
+
+  .urna-screen {
+    min-height: 220px;
+    padding: 0.8rem;
+  }
+
+  .urna-role {
+    font-size: 0.86rem;
+  }
+
+  .digit-box {
+    width: 36px;
+    height: 44px;
+    font-size: 1.4rem;
+  }
+
+  .num-key {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+
+  /* Modal de Vitória Fuzuê no Celular */
+  .victory-overlay {
+    padding: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .victory-modal {
+    margin: auto 0;
+    border-radius: 16px;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+
+  .victory-plantao-bar {
+    font-size: 0.72rem;
+    padding: 0.55rem 0.65rem;
+    gap: 0.4rem;
+  }
+
+  .victory-body {
+    padding: 1rem 0.85rem;
+  }
+
+  .victory-badge-top {
+    font-size: 0.66rem;
+    padding: 0.25rem 0.6rem;
+    text-align: center;
+    display: block;
+    line-height: 1.3;
+  }
+
+  .victory-hero-row,
+  .vic-score-pills,
+  .decrees-list {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .victory-photo-frame {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+  }
+
+  .victory-photo-frame img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .vic-chapa {
+    text-align: center;
+    font-size: 0.68rem;
+  }
+
+  .vic-name {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .vic-quote {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.65rem;
+  }
+
+  .victory-decrees-box {
+    padding: 0.8rem;
+  }
+
+  .victory-decrees-box h3 {
+    font-size: 0.74rem;
+    text-align: center;
+  }
+
+  .decrees-list li {
+    font-size: 0.75rem;
+    padding: 0.45rem 0.6rem;
+  }
+
+  .victory-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .btn-fuzue {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .bairros-grid {
+    grid-template-columns: 1fr;
+  }
+  .action-buttons {
+    grid-template-columns: 1fr 1fr;
+  }
+  .btn {
+    font-size: 0.68rem;
+    padding: 0.5rem 0.35rem;
   }
 }
