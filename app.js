@@ -234,19 +234,19 @@ const ZONAS_RORAIMA = [
 
 // 3. FRASES DE VIRADA DRAMÁTICA E EVENTOS DE APURAÇÃO
 const MOTIVOS_VIRADA_CLENYA = [
-  "Acabaram de chegar as urnas contabilizando os votos do Nordeste e Dra. Clenya virou!",
-  "Valbert Breno descobriu que a votação vai até as 22h e liberou lote extra no Canarinho!",
-  "Recontagem de 54 atas de bancas de TCC no Canarinho deu +3 votos pra Dra. Clenya!",
-  "Lote de votos via Moodle EaD do Paraviana e Pacaraima compilou sem erros de ABNT!",
-  "Orientandos de TCC de 2025/2026 puxaram mutirão das 21h59 antes de fechar o link!"
+  "Site oficial deu /indisponivel às 22h, mas o peso de 70% dos docentes (Item 3.5.1 do Edital) virou pra Dra. Clenya!",
+  "Empate técnico acionou o Item 3.6 do Edital 01/2026: desempate por Maior Grau Acadêmico (Doutorado UNIRIO) e tempo de UERR (2011)!",
+  "Acabaram de chegar as urnas contabilizando os votos do Nordeste antes do resultado preliminar de amanhã (26/11)!",
+  "Recontagem de 54 atas de bancas de TCC no Canarinho deu +0,41% (3 alunos = 0,136% cada) pra Dra. Clenya!",
+  "Profa. Marcella Lima Marinho lacrou o servidor às 22:00:00 com lote extra do Moodle EaD!"
 ];
 
 const MOTIVOS_VIRADA_CAIO = [
-  "Urna do Nordeste + Pintolândia acabou de sincronizar e colocou Msc. Caio na frente!",
-  "Valbert Breno soltou a planilha secreta de apuração às 21h50 e deu virada do Caio!",
-  "Urna do Pintolândia rodou script em OpenGL + Blender 3D e virou o jogo pro Msc. Caio!",
-  "Votos do bairro São Pedro chegaram via Google Talk (caiogrego@icomp.ufam.edu.br)!",
-  "Curso de Digitação 60h do SENAC (2002) permitiu digitar 400 votos por minuto antes das 22h!"
+  "O site deu /indisponivel às 22:00:00, mas o voto de 1 professor (peso 70%) + 2 técnicos (peso 20%) virou tudo pro Msc. Caio!",
+  "Os 73 alunos da Computação (que juntos valem 10% no Edital) fizeram mutirão Blender 3D no Pintolândia e viraram por 0,13%!",
+  "Urna do Nordeste + São Pedro sincronizou via Google Talk durante a madrugada antes do PDF oficial de amanhã (26/11)!",
+  "Valbert Breno soltou a planilha secreta pós-22h e o shape da foto da urna garantiu a virada do Msc. Caio!",
+  "Curso de Digitação 60h do SENAC (2002) permitiu enviar os últimos votos às 21:59:59 antes do /indisponivel!"
 ];
 
 const ACOES_SIMULADAS_ELEITORES = [
@@ -641,23 +641,23 @@ function renderizarTabelaEleitores() {
   });
 }
 
-// 10. CHAT EM TEMPO REAL (COM BOTS DOS ALUNOS DO PDF + PÉROLAS DO GRUPO)
+// 10. CHAT EM TEMPO REAL (COM BOTS DOS ALUNOS DO PDF + PÉROLAS DO GRUPO + EDITAL 01/2026)
 const MENSAGENS_BOTS_ZOACAO = [
-  { autor: "Eleitor Ansioso do Grupo", bairro: "Canarinho", texto: "saiu o resultado, já? @Valbert Breno faz a apuração dos votos aí" },
-  { autor: "Fiscal do TSE-UERR", bairro: "Pintolândia", texto: "deixa o Valbert terminar de calibrar a planilha de apuração que jaja ele posta kkkkk" },
-  { autor: "VALBERT BRENO GOMES FARIAS", bairro: "Canarinho", texto: "Cadê, já encerrou? Espero que já saia!" },
-  { autor: "Analista de Geopolítica BCC", bairro: "Mecejana", texto: "Calma galera, tão contabilizando os votos do Nordeste ainda! 🌵🗳️" },
-  { autor: "VALBERT BRENO GOMES FARIAS", bairro: "Canarinho", texto: "As eleições ocorrerão das 08h às 22h... Ah não pô, é até às 22 kkkkkkkk" },
-  { autor: "WANDEILSON FERNANDES COSTA", bairro: "Boa Vista - RR", texto: "coe valbert, me manda uma foto deles ai, uma de cada... vou tentar fazer uma parada aq 💻🔥" },
+  { autor: "Plantão /indisponivel", bairro: "Portal UERR", texto: "Votação para Coordenações de Curso 2026: Período encerrado. As eleições foram encerradas hoje, às 22:00:00. E o resultado preliminar SÓ SAI AMANHÃ (26/11)!" },
+  { autor: "Leitor do Edital 01/2026", bairro: "Canarinho", texto: "Gente vcs viram o Item 3.5.1 do Edital?? Professor pesa 70%, Técnico 20% e os 73 alunos de Computação juntos pesam só 10% (0,13% cada aluno) kkkkkk 🤡" },
+  { autor: "Eleitor Ansioso do Grupo", bairro: "Canarinho", texto: "saiu o resultado, já? @Valbert Breno faz a apuração dos votos aí que o site deu /indisponivel!" },
+  { autor: "Fiscal do TSE-UERR", bairro: "Pintolândia", texto: "deixa o Valbert terminar de calibrar a planilha de apuração que jaja ele posta antes da Comissão Eleitoral kkkkk" },
+  { autor: "VALBERT BRENO GOMES FARIAS", bairro: "Canarinho", texto: "Cadê, já encerrou às 22:00:00! Espero que já saia amanhã cedo!" },
+  { autor: "Analista de Geopolítica BCC", bairro: "Mecejana", texto: "Por isso que o resultado só sai dia 26/11, tão contabilizando os votos do Nordeste na mão! 🌵🗳️" },
+  { autor: "Especialista no Item 3.6", bairro: "Caçari", texto: "Se empatar no cálculo 70/20/10, o Item 3.6 do Edital diz que desempata por: 1º Maior grau acadêmico, 2º Tempo de UERR, 3º Maior idade!" },
+  { autor: "WANDEILSON FERNANDES COSTA", bairro: "Boa Vista - RR", texto: "coe valbert, enquanto a UERR só solta o resultado amanhã, nossa apuração paralela aqui não para 💻🔥" },
   { autor: "Comentarista de Urna", bairro: "São Pedro", texto: "KAKKEKWKDKkKKKKKKKKK olha a foto da urna, professor Caio tá no shape / inchado de tanto programar em C!" },
-  { autor: "ADRIAN HARR RODRIGUES", bairro: "Canarinho", texto: "Rapaziada, quem ganhar às 22h vai cancelar a prova de amanhã???" },
-  { autor: "ALEXANDRE YUKIO OYAMA DE SOUZA", bairro: "Paraviana", texto: "Acabei de ver o Lattes da Dra. Clenya, 54 bancas de TCC! Ela já avaliou até esse site kkkkk" },
-  { autor: "CAIO RODRIGO ALVES DE OLIVEIRA", bairro: "Pintolândia", texto: "Como orientando da Clenya no TCC de IA Generativa, declaro que meu voto foi compilado!" },
-  { autor: "JOSE ARTHUR SANTANA ECHECHURRY CRUZ", bairro: "Caçari", texto: "Se o Prof. Caio ganhar, a matéria de Banco de Dados vai ser modelada no Blender 3D!" },
-  { autor: "GELSON BARROS DOS SANTOS JUNIOR", bairro: "Mecejana", texto: "Alimentei minha LLM da UERR com os dois Lattes e a GPU pediu arrego 🔥" },
+  { autor: "ADRIAN HARR RODRIGUES", bairro: "Canarinho", texto: "Então meu voto valeu 0,1369%?? Vou cobrar 0,1369 pontos na média de Compiladores amanhã!" },
+  { autor: "ALEXANDRE YUKIO OYAMA DE SOUZA", bairro: "Paraviana", texto: "Acabei de ver o Lattes da Dra. Clenya, 54 bancas de TCC! Ela já avaliou até o Edital 01/2026 kkkkk" },
+  { autor: "JOSE ARTHUR SANTANA ECHECHURRY CRUZ", bairro: "Caçari", texto: "Se o Prof. Caio ganhar dia 26/11, a posse em 1º de fevereiro de 2027 vai ser renderizada no Blender 3D!" },
+  { autor: "GELSON BARROS DOS SANTOS JUNIOR", bairro: "Mecejana", texto: "Alimentei minha LLM da UERR com o Edital SEI 24727420 e ela respondeu: resultado só amanhã!" },
   { autor: "GABRIELA MONTEIRO ALEM", bairro: "São Pedro", texto: "Gente é verdade que o Caio ainda tem Google Talk no Lattes em 2026?? Olhem a linha 32 kkkkk" },
-  { autor: "PIETRA MARIA CHAVES DE OLIVEIRA", bairro: "Canarinho", texto: "Uma hora a Clenya ganha, 9 segundos depois o Caio vira... parece Race Condition!" },
-  { autor: "WHILLBERT BARROS LOBO", bairro: "Asa Branca", texto: "Curso de Digitação 60h no SENAC em 2002 vs 24 cursos de Moodle, os dois a 80km/h até as 22h quem ganha?" }
+  { autor: "PIETRA MARIA CHAVES DE OLIVEIRA", bairro: "Canarinho", texto: "Uma hora a Clenya ganha, 9 segundos depois o Caio vira... até sair o resultado oficial amanhã ninguém dorme!" }
 ];
 
 function popularSelectIdentidadeChat() {

@@ -317,6 +317,141 @@ body {
   color: var(--accent-gold);
 }
 
+/* BANNER DE ENCERRAMENTO ÀS 22:00:00 E PESOS DO EDITAL */
+.closed-alert-banner {
+  border: 2px solid rgba(239, 68, 68, 0.5);
+  background: linear-gradient(145deg, rgba(127, 29, 29, 0.28), rgba(15, 23, 42, 0.92));
+  box-shadow: 0 12px 35px rgba(239, 68, 68, 0.15);
+}
+
+.closed-top-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.closed-tag {
+  display: inline-block;
+  background: #dc2626;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 900;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+.closed-official-quote h3 {
+  font-size: 1.12rem;
+  font-weight: 900;
+  color: #fca5a5;
+  margin-bottom: 0.45rem;
+  line-height: 1.3;
+}
+
+.closed-official-quote p {
+  font-size: 0.83rem;
+  color: #e2e8f0;
+  line-height: 1.45;
+}
+
+.closed-official-quote a {
+  color: #38bdf8;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  word-break: break-all;
+}
+
+.edital-schedule-box {
+  background: rgba(7, 11, 20, 0.75);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+}
+
+.sched-title {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #fde047;
+  margin-bottom: 0.5rem;
+}
+
+.sched-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+}
+
+.sched-list li {
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sched-list li.done-step {
+  color: #94a3b8;
+  text-decoration: line-through;
+}
+
+.sched-list li.active-step {
+  background: rgba(245, 158, 11, 0.18);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #fef08a;
+}
+
+.edital-weights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.weight-card {
+  background: rgba(7, 11, 20, 0.7);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.weight-card.tie-card {
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+.w-pct {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+.w-desc {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.74rem;
+  line-height: 1.3;
+}
+
+.w-desc strong {
+  color: #f8fafc;
+  font-size: 0.79rem;
+  margin-bottom: 0.15rem;
+}
+
+.w-desc span {
+  color: var(--text-muted);
+}
+
 /* SCOREBOARD */
 .scoreboard-header {
   display: flex;
@@ -1884,9 +2019,13 @@ body {
   .duel-grid,
   .content-columns,
   .map-workspace,
-  .lattes-duel-grid {
+  .lattes-duel-grid,
+  .closed-top-row {
     grid-template-columns: minmax(0, 1fr);
     width: 100%;
+  }
+  .edital-weights-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .chat-sidebar {
     height: 540px;
@@ -2022,6 +2161,14 @@ body {
   .card-glass {
     padding: 0.95rem;
     border-radius: 14px;
+  }
+
+  .edital-weights-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .closed-official-quote h3 {
+    font-size: 0.96rem;
   }
 
   /* Placar / Scoreboard */
