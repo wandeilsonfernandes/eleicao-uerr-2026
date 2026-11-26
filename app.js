@@ -897,7 +897,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("keyConfirma").addEventListener("click", () => {
     if (digitosUrna === "10" || digitosUrna === "20") {
       // Som clássico "PIRILILIM" da urna
-      tocarBeepUrna(1046, 0.35);
+      tocarPirililimUrna();
       const escolhido = digitosUrna === "10" ? "clenya" : "caio";
       executarViradaDramatica(escolhido);
       contadorRegressivo = cicloAutomaticoSegundos;
@@ -906,12 +906,250 @@ document.addEventListener("DOMContentLoaded", () => {
       adicionarMensagemChat({
         autor: `🗳️ URNA (${autor})`,
         bairro: "Seção Especial UERR",
-        texto: `Acabou de votar na Chapa ${digitosUrna} e provocou uma virada na apuração!`,
+        texto: `Acabou de votar na Chapa ${digitosUrna} e decretou VITÓRIA COM FUZUÊ!`,
         sistema: true
       });
       fecharModalUrna();
+      // Abre a tela de vitória insana após votar na urna!
+      setTimeout(() => dispararTelaVitoriaFuzue(escolhido), 350);
     } else {
       tocarBeepUrna(300, 0.15);
     }
   });
+
+  // Botões de Vitória Fuzuê no Topo e Controles da Tela de Vitória
+  document.getElementById("btnWinClenya").addEventListener("click", () => {
+    executarViradaDramatica("clenya");
+    dispararTelaVitoriaFuzue("clenya");
+  });
+
+  document.getElementById("btnWinCaio").addEventListener("click", () => {
+    executarViradaDramatica("caio");
+    dispararTelaVitoriaFuzue("caio");
+  });
+
+  document.getElementById("btnCloseVictory").addEventListener("click", fecharTelaVitoriaFuzue);
+
+  document.getElementById("btnFuzueHorn").addEventListener("click", () => {
+    tocarFanfarraFuzue();
+    explodirFogosExtras();
+  });
+
+  document.getElementById("btnInvertWinner").addEventListener("click", () => {
+    const outro = vencedorFuzueAtual === "clenya" ? "caio" : "clenya";
+    executarViradaDramatica(outro);
+    dispararTelaVitoriaFuzue(outro);
+  });
 });
+
+// ============================================================================
+// 13. TELA DE VITÓRIA "MODO FUZUÊ TOTAL" (CONFETES, FOGOS, SIRENE E DECRETOS)
+// ============================================================================
+let vencedorFuzueAtual = "clenya";
+let confettiAnimId = null;
+let particulasFuzue = [];
+
+const DADOS_VITORIA = {
+  clenya: {
+    chapa: "CHAPA 10 • PARTIDO DA ENGENHARIA DE SOFTWARE, MOODLE & ABNT",
+    nome: "DRA. CLENYA REJANE BARROS DE LIMA",
+    img: "clenya.gif",
+    badge: "🚨 MATEMATICAMENTE ELEITA ÀS 22:00h (APÓS CONTABILIZAR OS VOTOS DO NORDESTE!)",
+    stamp: "👑 COORDENADORA ELEITA 2027/2029",
+    quote: "\"Agradeço aos 73 alunos do PDF, ao Valbert pela apuração das 22h e declaro que todo mundo já está escalado para 54 bancas de TCC amanhã às 08h!\"",
+    origem: "Urnas do Nordeste + Canarinho + Pacaraima",
+    decretos: [
+      "📚 <strong>DECRETO Nº 01:</strong> O TCC agora começa no 1º semestre e terá 54 bancas avaliadoras presididas pela Dra. Clenya.",
+      "📏 <strong>DECRETO Nº 02:</strong> Mensagem no grupo do WhatsApp fora das normas da ABNT (margem 3x3x2x2) perderá 2,0 pontos na média.",
+      "🌐 <strong>DECRETO Nº 03:</strong> Todo aluno deverá concluir 24 cursos de Moodle EaD e Gamificação antes de pedir colação de grau.",
+      "☕ <strong>DECRETO Nº 04:</strong> Wandeilson Fernandes e Valbert Breno estão nomeados Ministros Vitalícios do SEI e da Comissão Eleitoral!",
+      "🖥️ <strong>DECRETO Nº 05:</strong> O Portal da Transparência e o SIGAA passarão por auditoria de Usabilidade obrigatória toda sexta-feira.",
+      "🎉 <strong>DECRETO Nº 06:</strong> Feriado acadêmico decretado no Canarinho para comemorar a vitória da Chapa 10!"
+    ]
+  },
+  caio: {
+    chapa: "CHAPA 20 • PARTIDO DO BLENDER 3D, VISÃO COMPUTACIONAL & AGRO-LINUX",
+    nome: "MSC. CAIO DE JESUS GREGORATTO",
+    img: "caio.gif",
+    badge: "🚨 ELEITO EM 60 FPS ÀS 22:00h (COM VOTOS DO NORDESTE + PINTOLÂNDIA!)",
+    stamp: "👑 COORDENADOR ELEITO 2027/2029",
+    quote: "\"O shape falou mais alto na foto da urna! Menos formatação ABNT e mais modelagem 3D no Blender, OpenGL em C e Digitação 60h do SENAC!\"",
+    origem: "Urnas do Pintolândia + São Pedro + Nordeste",
+    decretos: [
+      "🍩 <strong>DECRETO Nº 01:</strong> A matéria de TCC foi substituída por modelar um Trator e um Donut 3D no Blender renderizado em Linux.",
+      "⌨️ <strong>DECRETO Nº 02:</strong> Prova prática de Digitação 60h (padrão SENAC 2002): quem digitar menos de 120 palavras/minuto faz recuperação.",
+      "💬 <strong>DECRETO Nº 03:</strong> O WhatsApp do curso será desativado; toda comunicação oficial será via Google Talk (caiogrego@icomp.ufam.edu.br).",
+      "📹 <strong>DECRETO Nº 04:</strong> Câmeras com IA de 'Detecção de Comportamento Anormal em Multidão' instaladas na fila do corredor do bloco.",
+      "🌾 <strong>DECRETO Nº 05:</strong> Integração oficial Ciência da Computação + Gestão de Agronegócios com GPS Agropecuário em todas as máquinas do Lab.",
+      "💪 <strong>DECRETO Nº 06:</strong> Wandeilson ('vou fazer uma parada aq') e Valbert Breno ganham nota 10 automática pela cobertura das 22h!"
+    ]
+  }
+};
+
+function tocarPirililimUrna() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const notas = [
+      { f: 987.77, t: 0, d: 0.09 },
+      { f: 1318.51, t: 0.09, d: 0.09 },
+      { f: 987.77, t: 0.18, d: 0.09 },
+      { f: 1318.51, t: 0.27, d: 0.09 },
+      { f: 987.77, t: 0.36, d: 0.09 },
+      { f: 1318.51, t: 0.45, d: 0.45 }
+    ];
+    notas.forEach(n => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "square";
+      osc.frequency.setValueAtTime(n.f, ctx.currentTime + n.t);
+      gain.gain.setValueAtTime(0.12, ctx.currentTime + n.t);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime + n.t);
+      osc.stop(ctx.currentTime + n.t + n.d);
+    });
+  } catch (e) {}
+}
+
+function tocarFanfarraFuzue() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    // Fanfarra + Buzinaço de festa
+    const seq = [
+      { f: 523.25, t: 0.0, d: 0.14 },
+      { f: 659.25, t: 0.15, d: 0.14 },
+      { f: 783.99, t: 0.30, d: 0.14 },
+      { f: 1046.50, t: 0.45, d: 0.35 },
+      { f: 783.99, t: 0.82, d: 0.14 },
+      { f: 1046.50, t: 0.98, d: 0.55 }
+    ];
+    seq.forEach(n => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(n.f, ctx.currentTime + n.t);
+      gain.gain.setValueAtTime(0.11, ctx.currentTime + n.t);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + n.t + n.d);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime + n.t);
+      osc.stop(ctx.currentTime + n.t + n.d);
+    });
+  } catch (e) {}
+}
+
+function dispararTelaVitoriaFuzue(vencedor) {
+  vencedorFuzueAtual = vencedor;
+  const info = DADOS_VITORIA[vencedor];
+  const overlay = document.getElementById("victoryOverlay");
+  const modalBox = document.getElementById("victoryModalBox");
+
+  modalBox.classList.remove("theme-clenya", "theme-caio");
+  modalBox.classList.add(vencedor === "clenya" ? "theme-clenya" : "theme-caio");
+
+  document.getElementById("vicBadgeTop").textContent = info.badge;
+  document.getElementById("vicImg").src = info.img;
+  document.getElementById("vicStamp").textContent = info.stamp;
+  document.getElementById("vicChapa").textContent = info.chapa;
+  document.getElementById("vicName").textContent = info.nome;
+  document.getElementById("vicQuote").textContent = info.quote;
+  document.getElementById("vicDecisiveOrigin").textContent = info.origem;
+
+  const pctEl = vencedor === "clenya"
+    ? document.getElementById("pctClenya").textContent
+    : document.getElementById("pctCaio").textContent;
+  document.getElementById("vicFinalPct").textContent = pctEl;
+
+  const ul = document.getElementById("vicDecreesList");
+  ul.innerHTML = "";
+  info.decretos.forEach(d => {
+    const li = document.createElement("li");
+    li.innerHTML = d;
+    ul.appendChild(li);
+  });
+
+  overlay.style.display = "flex";
+  tocarPirililimUrna();
+  setTimeout(tocarFanfarraFuzue, 550);
+  iniciarChuvaConfeteEFogos(vencedor);
+}
+
+function fecharTelaVitoriaFuzue() {
+  document.getElementById("victoryOverlay").style.display = "none";
+  if (confettiAnimId) {
+    cancelAnimationFrame(confettiAnimId);
+    confettiAnimId = null;
+  }
+}
+
+function iniciarChuvaConfeteEFogos(vencedor) {
+  const canvas = document.getElementById("confettiCanvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const cores = vencedor === "clenya"
+    ? ["#a855f7", "#ec4899", "#fde047", "#38bdf8", "#ffffff"]
+    : ["#10b981", "#06b6d4", "#fde047", "#22c55e", "#ffffff"];
+
+  particulasFuzue = [];
+  for (let i = 0; i < 160; i++) {
+    particulasFuzue.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      w: Math.random() * 11 + 6,
+      h: Math.random() * 7 + 4,
+      cor: cores[Math.floor(Math.random() * cores.length)],
+      vx: (Math.random() - 0.5) * 4,
+      vy: Math.random() * 4.5 + 2.5,
+      rot: Math.random() * 360,
+      vRot: (Math.random() - 0.5) * 10
+    });
+  }
+
+  if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
+
+  function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particulasFuzue.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vRot;
+      if (p.y > canvas.height + 20) {
+        p.y = -20;
+        p.x = Math.random() * canvas.width;
+      }
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.rot * Math.PI) / 180);
+      ctx.fillStyle = p.cor;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+    confettiAnimId = requestAnimationFrame(loop);
+  }
+  loop();
+}
+
+function explodirFogosExtras() {
+  const canvas = document.getElementById("confettiCanvas");
+  const cx = Math.random() * (canvas.width * 0.6) + canvas.width * 0.2;
+  const cy = Math.random() * (canvas.height * 0.4) + canvas.height * 0.15;
+  const cores = ["#fde047", "#ef4444", "#a855f7", "#10b981", "#38bdf8", "#ec4899"];
+
+  for (let i = 0; i < 70; i++) {
+    const ang = Math.random() * Math.PI * 2;
+    const vel = Math.random() * 8 + 2;
+    particulasFuzue.push({
+      x: cx,
+      y: cy,
+      w: 10,
+      h: 10,
+      cor: cores[Math.floor(Math.random() * cores.length)],
+      vx: Math.cos(ang) * vel,
+      vy: Math.sin(ang) * vel,
+      rot: 0,
+      vRot: 12
+    });
+  }
+}

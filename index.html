@@ -63,6 +63,12 @@
           <button class="btn btn-urna" id="btnOpenUrna" title="Simular seu voto na Urna Eletrônica">
             🗳️ VOTAR NA URNA
           </button>
+          <button class="btn btn-win-clenya" id="btnWinClenya" title="Disparar tela de vitória da Dra. Clenya!">
+            👑 VITÓRIA CLENYA!
+          </button>
+          <button class="btn btn-win-caio" id="btnWinCaio" title="Disparar tela de vitória do Msc. Caio!">
+            👑 VITÓRIA CAIO!
+          </button>
         </div>
       </div>
     </div>
@@ -501,6 +507,73 @@
             <button class="act-key key-corrige" id="keyCorrige">CORRIGE</button>
             <button class="act-key key-confirma" id="keyConfirma">CONFIRMA</button>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VICTORY FUZUÊ OVERLAY (MEGA CELEBRATION) -->
+  <div class="victory-overlay" id="victoryOverlay" style="display: none;">
+    <canvas id="confettiCanvas"></canvas>
+    <div class="siren-light siren-left"></div>
+    <div class="siren-light siren-right"></div>
+
+    <div class="victory-modal" id="victoryModalBox">
+      <div class="victory-plantao-bar">
+        <span class="siren-emoji">🚨</span>
+        <span>PLANTÃO EXTRAORDINÁRIO TSE-UERR • 100,00% DAS URNAS COMPILADAS (INCLUINDO NORDESTE!)</span>
+        <span class="siren-emoji">🚨</span>
+      </div>
+
+      <div class="victory-body">
+        <div class="victory-badge-top" id="vicBadgeTop">MATEMATICAMENTE ELEITO(A) ÀS 22:00:00!</div>
+
+        <div class="victory-hero-row">
+          <div class="victory-photo-frame" id="vicPhotoFrame">
+            <div class="spinning-aura"></div>
+            <img id="vicImg" src="clenya.gif" alt="Vencedor" />
+            <div class="winner-stamp" id="vicStamp">ELEITO(A) 2027/2029</div>
+          </div>
+
+          <div class="victory-info">
+            <div class="vic-chapa" id="vicChapa">CHAPA 10 • PARTIDO DA ENGENHARIA DE SOFTWARE &amp; MOODLE</div>
+            <h2 class="vic-name" id="vicName">DRA. CLENYA REJANE BARROS DE LIMA</h2>
+            <p class="vic-quote" id="vicQuote">"A partir de amanhã, todo mundo já está automaticamente matriculado em 54 bancas de TCC!"</p>
+
+            <div class="vic-score-pills">
+              <div class="v-pill-big">
+                <span class="vp-label">VOTAÇÃO FINAL</span>
+                <strong id="vicFinalPct">51,76%</strong>
+              </div>
+              <div class="v-pill-big">
+                <span class="vp-label">VOTOS DECISIVOS</span>
+                <strong id="vicDecisiveOrigin">Urna do Nordeste + Pintolândia</strong>
+              </div>
+              <div class="v-pill-big">
+                <span class="vp-label">AUDITORIA</span>
+                <strong>Valbert Breno &amp; Wandeilson</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DECRETOS IMEDIATOS DA NOVA COORDENAÇÃO -->
+        <div class="victory-decrees-box">
+          <h3>📜 PRIMEIROS DECRETOS OFICIAIS ASSINADOS NO SEI (EFEITO IMEDIATO):</h3>
+          <ul class="decrees-list" id="vicDecreesList"></ul>
+        </div>
+
+        <!-- FUZUÊ ACTIONS -->
+        <div class="victory-actions">
+          <button class="btn-fuzue btn-horn" id="btnFuzueHorn">
+            📯 SOLTAR BUZINAÇO + FOGOS!
+          </button>
+          <button class="btn-fuzue btn-invert-win" id="btnInvertWinner">
+            🔄 RECONTAGEM DO VALBERT (VIRAR PRO OUTRO!)
+          </button>
+          <button class="btn-fuzue btn-close-vic" id="btnCloseVictory">
+            ✖ VOLTAR PRA APURAÇÃO AO VIVO
+          </button>
         </div>
       </div>
     </div>

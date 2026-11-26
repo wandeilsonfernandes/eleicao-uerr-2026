@@ -260,6 +260,28 @@ body {
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.55);
 }
 
+.btn-win-clenya {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+}
+
+.btn-win-clenya:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 22px rgba(236, 72, 153, 0.65);
+}
+
+.btn-win-caio {
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+  color: #06281e;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-win-caio:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 22px rgba(6, 182, 212, 0.65);
+}
+
 /* CARDS & LAYOUT */
 .main-grid {
   padding-top: 1.5rem;
@@ -1494,6 +1516,350 @@ body {
 .key-branco { background: #f8fafc; }
 .key-corrige { background: #f97316; }
 .key-confirma { background: #22c55e; padding: 0.85rem 0.3rem; }
+
+/* =====================================================
+   VICTORY FUZUÊ OVERLAY (MEGA CELEBRATION)
+===================================================== */
+.victory-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.92), rgba(3, 7, 18, 0.98));
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+  animation: popVictoryBg 0.35s ease;
+}
+
+@keyframes popVictoryBg {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2001;
+}
+
+.siren-light {
+  position: fixed;
+  top: -120px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(95px);
+  pointer-events: none;
+  z-index: 2001;
+  animation: sirenFlash 0.65s infinite alternate;
+}
+
+.siren-left {
+  left: -100px;
+  background: rgba(239, 68, 68, 0.55);
+}
+
+.siren-right {
+  right: -100px;
+  background: rgba(59, 130, 246, 0.55);
+  animation-delay: 0.32s;
+}
+
+@keyframes sirenFlash {
+  0% { opacity: 0.25; transform: scale(0.9); }
+  100% { opacity: 0.95; transform: scale(1.25); }
+}
+
+.victory-modal {
+  position: relative;
+  z-index: 2005;
+  max-width: 960px;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  border: 3px solid var(--accent-gold);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 0 80px rgba(245, 158, 11, 0.55);
+  animation: modalBounceIn 0.5s cubic-bezier(0.18, 1.25, 0.4, 1);
+}
+
+.victory-modal.theme-clenya {
+  border-color: #d946ef;
+  box-shadow: 0 0 90px rgba(217, 70, 239, 0.65);
+}
+
+.victory-modal.theme-caio {
+  border-color: #10b981;
+  box-shadow: 0 0 90px rgba(16, 185, 129, 0.65);
+}
+
+@keyframes modalBounceIn {
+  0% { transform: scale(0.65) rotate(-3deg); opacity: 0; }
+  70% { transform: scale(1.03) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.victory-plantao-bar {
+  background: linear-gradient(90deg, #dc2626, #f59e0b, #dc2626);
+  background-size: 200% 100%;
+  animation: plantaoGradient 2s linear infinite;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 900;
+  font-size: 0.85rem;
+  padding: 0.75rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes plantaoGradient {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+.siren-emoji {
+  font-size: 1.25rem;
+  animation: shakeEmoji 0.4s infinite alternate;
+}
+
+@keyframes shakeEmoji {
+  from { transform: rotate(-18deg) scale(1); }
+  to { transform: rotate(18deg) scale(1.25); }
+}
+
+.victory-body {
+  padding: 1.75rem 2rem;
+}
+
+.victory-badge-top {
+  display: inline-block;
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid #f59e0b;
+  color: #fde047;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.06em;
+}
+
+.victory-hero-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.75rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.victory-photo-frame {
+  position: relative;
+  width: 175px;
+  height: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinning-aura {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #f59e0b, #ec4899, #a855f7, #10b981, #3b82f6, #f59e0b);
+  animation: spinAura 2.5s linear infinite;
+  filter: blur(4px);
+}
+
+@keyframes spinAura {
+  to { transform: rotate(360deg); }
+}
+
+.victory-photo-frame img {
+  position: relative;
+  width: 162px;
+  height: 162px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  z-index: 2;
+}
+
+.winner-stamp {
+  position: absolute;
+  bottom: -10px;
+  z-index: 3;
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 900;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  transform: rotate(-4deg);
+  white-space: nowrap;
+}
+
+.vic-chapa {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #38bdf8;
+  margin-bottom: 0.25rem;
+}
+
+.vic-name {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #fff, #fde047, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.vic-quote {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  font-style: italic;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.6rem 0.9rem;
+  border-left: 4px solid #f59e0b;
+  border-radius: 8px;
+}
+
+.vic-score-pills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.v-pill-big {
+  background: rgba(7, 11, 20, 0.8);
+  border: 1px solid var(--border-glass);
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+}
+
+.vp-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--text-muted);
+}
+
+.v-pill-big strong {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: #fde047;
+}
+
+.victory-decrees-box {
+  background: rgba(7, 11, 20, 0.85);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 16px;
+  padding: 1.1rem 1.3rem;
+  margin-bottom: 1.35rem;
+}
+
+.victory-decrees-box h3 {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: #fde047;
+  margin-bottom: 0.75rem;
+}
+
+.decrees-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.decrees-list li {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+}
+
+.victory-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-fuzue {
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: 0.86rem;
+  padding: 0.8rem 1.25rem;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.btn-horn {
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(234, 88, 12, 0.45);
+}
+
+.btn-horn:hover {
+  transform: scale(1.06);
+}
+
+.btn-invert-win {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
+}
+
+.btn-invert-win:hover {
+  transform: scale(1.05);
+}
+
+.btn-close-vic {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-close-vic:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+}
+
+@media (max-width: 750px) {
+  .victory-hero-row,
+  .vic-score-pills,
+  .decrees-list {
+    grid-template-columns: 1fr;
+  }
+  .victory-photo-frame {
+    margin: 0 auto;
+  }
+  .vic-name {
+    font-size: 1.45rem;
+    text-align: center;
+  }
+}
 
 /* RESPONSIVE */
 @media (max-width: 1100px) {
