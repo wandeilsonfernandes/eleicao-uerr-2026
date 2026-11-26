@@ -232,32 +232,78 @@ const ZONAS_RORAIMA = [
   }
 ];
 
+// 2.5. DADOS OFICIAIS DO RELATÓRIO DAS ELEIÇÕES UERR (26/11/2026 às 11:43:23 - Págs. 1 a 6)
+const RELATORIO_OFICIAL_BCC = {
+  dataGeracao: "26/11/2026 11:43:23",
+  urlOficial: "https://eleicoes.uerr.edu.br/coordenador2026/relatorio",
+  clenya: {
+    colocacao: 1,
+    docente: 3,      // 3/5 * 70% = 42,00%
+    tecnico: 4,      // 4/4 * 20% = 20,00%
+    discente: 32,    // 32/37 * 10% = 8,6486% -> 8,65%
+    totalNominal: 39,
+    pontuacao: 70.65
+  },
+  caio: {
+    colocacao: 2,
+    docente: 2,      // 2/5 * 70% = 28,00%
+    tecnico: 0,      // 0/4 * 20% = 0,00%
+    discente: 5,     // 5/37 * 10% = 1,3513% -> 1,35%
+    totalNominal: 7,
+    pontuacao: 29.35
+  },
+  branco: { docente: 0, tecnico: 0, discente: 0 },
+  nulo: { docente: 0, tecnico: 0, discente: 1 },
+  abstencoes: { docente: 1, tecnico: 2, discente: 35, total: 38 }
+};
+
+const RELATORIO_TODOS_CURSOS_UERR = [
+  { curso: "Ciência da Computação", colocacao: "1º 🏆", candidato: "CLENYA REJANE BARROS DE LIMA", doc: 3, tec: 4, disc: 32, brancosNulos: "0 Brancos • 1 Nulo (Disc.)", pct: "70,65%", destaque: "win-bcc" },
+  { curso: "Ciência da Computação", colocacao: "2º 🥈", candidato: "CAIO DE JESUS GREGORATTO", doc: 2, tec: 0, disc: 5, brancosNulos: "Único curso com 2 candidatos!", pct: "29,35%", destaque: "sec-bcc" },
+  { curso: "Administração", colocacao: "1º", candidato: "JACQUELAINE ALVES MACHADO", doc: 4, tec: 4, disc: 6, brancosNulos: "3 Brancos (Disc.) • 2 Nulos (Disc.)", pct: "100,00%" },
+  { curso: "Ciências Biológicas", colocacao: "1º", candidato: "ALEXANDRE CURCINO", doc: 8, tec: 1, disc: 5, brancosNulos: "0 Brancos • 0 Nulos", pct: "100,00%" },
+  { curso: "Ciências Contábeis", colocacao: "1º", candidato: "ITAJAY MARIA SOARES", doc: 8, tec: 5, disc: 42, brancosNulos: "0 Brancos • 1 Nulo (Disc.)", pct: "100,00%" },
+  { curso: "Direito", colocacao: "1º", candidato: "FERNANDO CESAR COSTA XAVIER", doc: 8, tec: 1, disc: 18, brancosNulos: "0 Brancos • 0 Nulos", pct: "100,00%" },
+  { curso: "Educação Física", colocacao: "1º", candidato: "ANDRÉ DE ARAÚJO PINTO", doc: 4, tec: 1, disc: 17, brancosNulos: "0 Brancos • 1 Nulo (Disc.)", pct: "100,00%" },
+  { curso: "Enfermagem", colocacao: "1º", candidato: "FRANCISCO RAILSON BISPO DE BARROS", doc: 7, tec: 1, disc: 7, brancosNulos: "1 Branco (Disc.) • 0 Nulos", pct: "100,00%" },
+  { curso: "Filosofia", colocacao: "1º", candidato: "FRANCISCO RAFAEL LEIDENS", doc: 6, tec: 0, disc: 4, brancosNulos: "1 Branco (Disc.) • 0 Nulos (0 Téc.)", pct: "80,00%" },
+  { curso: "Física", colocacao: "1º", candidato: "SALOME FONTAO CUNHA", doc: 3, tec: 0, disc: 5, brancosNulos: "0 Brancos • 0 Nulos (0 Téc.)", pct: "80,00%" },
+  { curso: "Geografia", colocacao: "1º", candidato: "ELIONETE DE CASTRO GARZONI", doc: 6, tec: 0, disc: 17, brancosNulos: "1 Branco (Disc.) • 0 Nulos (0 Téc.)", pct: "80,00%" },
+  { curso: "Letras", colocacao: "1º", candidato: "CORA ELENA GONZALO ZAMBRANO", doc: 11, tec: 0, disc: 1, brancosNulos: "0 Brancos • 1 Nulo (Docente!)", pct: "80,00%" },
+  { curso: "Matemática", colocacao: "1º", candidato: "JERRIMAR MORAES DE ARAUJO", doc: 6, tec: 0, disc: 6, brancosNulos: "0 Brancos • 0 Nulos (0 Téc.)", pct: "80,00%" },
+  { curso: "Medicina", colocacao: "1º", candidato: "RENATO DA SILVA GALVÃO", doc: 9, tec: 1, disc: 28, brancosNulos: "0 Brancos • 1 Nulo (Disc.)", pct: "100,00%" },
+  { curso: "História", colocacao: "1º", candidato: "MARIA JOSE DOS SANTOS", doc: 4, tec: 2, disc: 13, brancosNulos: "0 Brancos • 0 Nulos", pct: "100,00%" },
+  { curso: "Pedagogia", colocacao: "1º", candidato: "OSVALDO PIEDADE PEREIRA DA SILVA", doc: 6, tec: 1, disc: 12, brancosNulos: "0 Brancos • 0 Nulos", pct: "100,00%" },
+  { curso: "Química", colocacao: "1º", candidato: "REGIA CHACON PESSOA DE LIMA", doc: 5, tec: 1, disc: 14, brancosNulos: "0 Brancos • 0 Nulos", pct: "100,00%" },
+  { curso: "Serviço Social", colocacao: "1º", candidato: "RITA DE CASSIA BARBOSA DOS SANTOS", doc: 4, tec: 0, disc: 11, brancosNulos: "0 Brancos • 0 Nulos (0 Téc.)", pct: "80,00%" },
+  { curso: "Turismo", colocacao: "1º", candidato: "ROSIJANE EVANGELISTA DA SILVA", doc: 3, tec: 0, disc: 0, brancosNulos: "0 Alunos e 0 Técnicos votaram!", pct: "70,00%" },
+  { curso: "Ciências Agrárias", colocacao: "—", candidato: "SEM CANDIDATO INSCRITO (FANTASMA 👻)", doc: 0, tec: 0, disc: 0, brancosNulos: "0 Brancos • 0 Nulos (0 Votos!)", pct: "—", destaque: "zero-agrarias" },
+  { curso: "Ciências Sociais", colocacao: "1º", candidato: "WANDERLEY GURGEL DE ALMEIDA", doc: 2, tec: 0, disc: 9, brancosNulos: "0 Brancos • 0 Nulos (0 Téc.)", pct: "80,00%" }
+];
+
 // 3. FRASES DE VIRADA DRAMÁTICA E EVENTOS DE APURAÇÃO
 const MOTIVOS_VIRADA_CLENYA = [
-  "Site oficial deu /indisponivel às 22h, mas o peso de 70% dos docentes (Item 3.5.1 do Edital) virou pra Dra. Clenya!",
-  "Empate técnico acionou o Item 3.6 do Edital 01/2026: desempate por Maior Grau Acadêmico (Doutorado UNIRIO) e tempo de UERR (2011)!",
-  "Acabaram de chegar as urnas contabilizando os votos do Nordeste antes do resultado preliminar de amanhã (26/11)!",
-  "Recontagem de 54 atas de bancas de TCC no Canarinho deu +0,41% (3 alunos = 0,136% cada) pra Dra. Clenya!",
-  "Profa. Marcella Lima Marinho lacrou o servidor às 22:00:00 com lote extra do Moodle EaD!"
+  "RELATÓRIO OFICIAL (26/11 às 11:43:23): Dra. Clenya vence com 70,65% (3 Docentes = 42%, 4 Técnicos = 20%, 32 Discentes = 8,65%)!",
+  "Capote Técnico Oficial: 4 a 0 nos Técnicos Administrativos garantiu 20% inteirinhos de vantagem pra Dra. Clenya no PDF!",
+  "Lavada nos Discentes: dos 37 votos válidos de alunos, 32 foram na Dra. Clenya (86,49%) contra 5 no Msc. Caio + 1 Nulo!",
+  "Placar Docente Oficial (3 x 2): 3 professores votaram na Dra. Clenya (42,00%) contra 2 no Msc. Caio (28,00%)!",
+  "54 atas de bancas de TCC + 39 votos válidos confirmados no Relatório das Eleições UERR 2026!"
 ];
 
 const MOTIVOS_VIRADA_CAIO = [
-  "O site deu /indisponivel às 22:00:00, mas o voto de 1 professor (peso 70%) + 2 técnicos (peso 20%) virou tudo pro Msc. Caio!",
-  "Os 73 alunos da Computação (que juntos valem 10% no Edital) fizeram mutirão Blender 3D no Pintolândia e viraram por 0,13%!",
-  "Urna do Nordeste + São Pedro sincronizou via Google Talk durante a madrugada antes do PDF oficial de amanhã (26/11)!",
-  "Valbert Breno soltou a planilha secreta pós-22h e o shape da foto da urna garantiu a virada do Msc. Caio!",
-  "Curso de Digitação 60h do SENAC (2002) permitiu enviar os últimos votos às 21:59:59 antes do /indisponivel!"
+  "REALIDADE ALTERNATIVA ATIVADA: Os 35 alunos de Computação que faltaram acordaram às 11:44 e votaram todos no Msc. Caio!",
+  "Recontagem Paralela no Blender 3D: Se o 1 aluno que votou NULO tivesse compilado um shader em OpenGL, virava pro Caio!",
+  "E se o 6º Professor tivesse votado e virado um docente? Nos professores foi quase empate: 3 a 2 no relatório oficial!",
+  "Valbert Breno achou uma urna extra no São Pedro + Nordeste via Google Talk que converte votos de Agronegócios pra Computação!",
+  "Simulação Modo Zoeira: Digitação 60h do SENAC (2002) inverteu os ponteiros do relatório PDF em C!"
 ];
 
 const ACOES_SIMULADAS_ELEITORES = [
-  "Votou com certificado ABNT atualizado",
-  "Votou renderizando um Donut no Blender 3D",
-  "Pediu revisão da nota de Engenharia de Software na urna",
-  "Tentou dar git push --force na seção eleitoral",
-  "Confirmou voto em menos de 1.2s (SENAC Digitação)",
-  "Consultou o Moodle antes de apertar CONFIRMA",
-  "Votou via SSH direto do laboratório da UERR",
-  "Questionou se o voto conta como Hora Complementar"
+  "Confirmado entre os 32 votos discentes válidos na Dra. Clenya (Relatório 26/11)",
+  "Votou com certificado ABNT atualizado (1 dos 32 alunos da Dra. Clenya)",
+  "Consultou as 54 bancas de TCC no Lattes e confirmou Dra. Clenya",
+  "Compilou o voto no CAFe dentro do peso de 8,65% discente para Dra. Clenya",
+  "Garantiu presença entre os 38 alunos que não esqueceram a senha do CAFe"
 ];
 
 // 4. ESTADO GLOBAL DA APLICAÇÃO
@@ -266,24 +312,61 @@ let zonaSelecionadaId = "canarinho";
 let modoVisualizacaoMapa = "boavista"; // 'boavista' ou 'roraima'
 let leafletMap = null;
 let leafletMarkers = {};
-let liderAtual = "clenya"; // Começa com Clenya, depois vira Caio, depois Clenya...
+let liderAtual = "clenya";
+let modoOficialAtivo = true; // Começa com os dados 100% reais do PDF (70,65% x 29,35%)!
+let loopSimulacaoAtivo = false; // O usuário pode ligar se quiser ver as viradas automáticas
 let cicloAutomaticoSegundos = 9;
 let contadorRegressivo = cicloAutomaticoSegundos;
 
-// 5. INICIALIZAÇÃO DOS ELEITORES DO PDF
+// 5. INICIALIZAÇÃO DOS ELEITORES COM OS NÚMEROS EXATOS DO RELATÓRIO OFICIAL (26/11/2026)
 function inicializarEleitores() {
+  carregarDistribuicaoOficial();
+  popularSelectIdentidadeChat();
+  renderizarTabelaTodosCursos();
+}
+
+function carregarDistribuicaoOficial() {
   todosEleitores = [];
   let idx = 1;
+  modoOficialAtivo = true;
 
-  // 73 Acadêmicos de Ciência da Computação
+  // No PDF Oficial de Ciência da Computação (26/11/2026 11:43:23):
+  // Discentes (73 aptos no SEI): 32 votaram Clenya, 5 votaram Caio, 1 votou Nulo, 35 NÃO VOTARAM (Abstenção)
+  // Docentes (6 na lista do curso): 3 votaram Clenya, 2 votaram Caio, 1 NÃO VOTOU (Abstenção)
+  // Técnicos (6 na lista TI): 4 votaram Clenya, 0 votaram Caio, 2 NÃO VOTARAM (Abstenção)
+
+  // Índices escolhidos para os 5 votos discentes do Caio, 1 voto nulo e 32 votos da Clenya (incluindo Wandeilson e Valbert presentes!)
+  const indicesCaioDiscentes = new Set([3, 18, 31, 47, 61]); // 5 alunos fiéis do Blender 3D / Linux
+  const indiceNuloDiscente = 44; // 1 aluno misterioso que votou NULO
+
+  let contClenyaDisc = 0;
+
   ACADEMICOS_BCC.forEach((nome, i) => {
     const zona = ZONAS_RORAIMA[i % ZONAS_RORAIMA.length];
-    const voto = (i % 2 === 0) ? "clenya" : "caio";
-    const acao = nome.includes("WANDEILSON")
-      ? "👑 Criador do Site ('me manda uma foto deles aí, vou tentar fazer uma parada aq')"
-      : nome.includes("VALBERT BRENO")
-      ? "📊 Presidente da Comissão de Apuração ('Ah não pô, é até às 22h kkkk')"
-      : ACOES_SIMULADAS_ELEITORES[i % ACOES_SIMULADAS_ELEITORES.length];
+    let voto = "abstencao";
+    let acao = "😴 Faz parte dos 35 alunos que esqueceram de votar (Abstenção no Relatório 26/11)";
+
+    if (indicesCaioDiscentes.has(i)) {
+      voto = "caio";
+      acao = "🟢 Um dos 5 heróis discentes que votaram no Msc. Caio (1,35% no PDF Oficial!)";
+    } else if (i === indiceNuloDiscente) {
+      voto = "nulo";
+      acao = "🕵️‍♂️ O LENDÁRIO 1 VOTO NULO DISCENTE registrado no Relatório Oficial de 26/11!";
+    } else if (nome.includes("WANDEILSON") || nome.includes("VALBERT BRENO") || contClenyaDisc < 30) {
+      // Garante exatos 32 discentes na Dra. Clenya (30 + Wandeilson + Valbert = 32!)
+      if (nome.includes("WANDEILSON")) {
+        voto = "clenya";
+        acao = "👑 Criador do Site • Voto contabilizado no Relatório Oficial de 26/11!";
+      } else if (nome.includes("VALBERT BRENO")) {
+        voto = "clenya";
+        acao = "📊 Auditor Oficial da Turma • Contabilizou os 70,65% x 29,35% do PDF!";
+      } else {
+        voto = "clenya";
+        contClenyaDisc++;
+        acao = ACOES_SIMULADAS_ELEITORES[i % ACOES_SIMULADAS_ELEITORES.length];
+      }
+    }
+
     todosEleitores.push({
       num: idx++,
       nome,
@@ -295,12 +378,46 @@ function inicializarEleitores() {
     });
   });
 
-  // 6 Docentes
+  // Ajuste fino caso Wandeilson ou Valbert já tenham entrado antes dos 30 primeiros: garante exatos 32 Clenya, 5 Caio, 1 Nulo, 35 Abstenções
+  let atuaisClenya = todosEleitores.filter(e => e.categoria === "Acadêmico BCC" && e.voto === "clenya");
+  while (atuaisClenya.length < 32) {
+    const abst = todosEleitores.find(e => e.categoria === "Acadêmico BCC" && e.voto === "abstencao");
+    if (abst) {
+      abst.voto = "clenya";
+      abst.acao = "Confirmado entre os 32 votos discentes válidos na Dra. Clenya (Relatório 26/11)";
+    }
+    atuaisClenya = todosEleitores.filter(e => e.categoria === "Acadêmico BCC" && e.voto === "clenya");
+  }
+  while (atuaisClenya.length > 32) {
+    const ultimo = atuaisClenya[atuaisClenya.length - 1];
+    if (!ultimo.nome.includes("WANDEILSON") && !ultimo.nome.includes("VALBERT")) {
+      ultimo.voto = "abstencao";
+      ultimo.acao = "😴 Faz parte dos 35 alunos que esqueceram de votar (Abstenção no Relatório 26/11)";
+    }
+    atuaisClenya = todosEleitores.filter(e => e.categoria === "Acadêmico BCC" && e.voto === "clenya");
+  }
+
+  // 6 Docentes -> Oficial: 3 Clenya, 2 Caio, 1 Abstenção
   DOCENTES_BCC.forEach((nome, i) => {
     const zona = ZONAS_RORAIMA[i % 6];
-    let voto = (i % 2 === 0) ? "clenya" : "caio";
-    if (nome.includes("CLENYA")) voto = "clenya";
-    if (nome.includes("CAIO")) voto = "caio";
+    let voto = "clenya";
+    let acao = "👨‍🏫 Voto Docente Oficial (Peso 70%: 3 a 2 pra Dra. Clenya no PDF)";
+    if (nome.includes("CLENYA")) {
+      voto = "clenya";
+      acao = "🏆 Candidata Eleita (70,65% no Relatório Oficial de 26/11/2026!)";
+    } else if (nome.includes("CAIO")) {
+      voto = "caio";
+      acao = "🥈 Candidato 2º Colocado (29,35% no Relatório Oficial de 26/11/2026)";
+    } else if (i === 2 || i === 3) {
+      voto = "clenya"; // Total 3 docentes Clenya (Clenya + 2)
+    } else if (i === 4) {
+      voto = "caio";   // Total 2 docentes Caio (Caio + 1)
+      acao = "👨‍🏫 Voto Docente Oficial no Msc. Caio (garantiu 28,00% na ponderação docente!)";
+    } else {
+      voto = "abstencao"; // 6º docente não votou (apenas 5 votos docentes registrados no PDF)
+      acao = "😴 Ausente na urna docente (apenas 5 docentes votaram no Relatório Oficial)";
+    }
+
     todosEleitores.push({
       num: idx++,
       nome,
@@ -308,31 +425,28 @@ function inicializarEleitores() {
       zonaId: zona.id,
       zonaNome: zona.nome,
       voto,
-      acao: nome.includes("CLENYA")
-        ? "Candidata Chapa 10 (Já abriu 3 bancas hoje)"
-        : nome.includes("CAIO")
-        ? "Candidato Chapa 20 (Monitorando multidão com IA)"
-        : "Voto docente peso 2x no colegiado"
+      acao
     });
   });
 
-  // 6 Técnicos / Analistas TI
+  // 6 Técnicos -> Oficial: 4 Clenya, 0 Caio, 2 Abstenções
   TECNICOS_TI.forEach((nome, i) => {
-    const zona = ZONAS_RORAIMA[(i + 3) % ZONAS_RORAIMA.length];
-    const voto = (i % 2 === 1) ? "clenya" : "caio";
+    const zona = ZONAS_RORAIMA[(i + 2) % ZONAS_RORAIMA.length];
+    const votouClenya = i < 4;
     todosEleitores.push({
       num: idx++,
       nome,
       categoria: "Técnico TI",
       zonaId: zona.id,
       zonaNome: zona.nome,
-      voto,
-      acao: "Mantendo o servidor da urna online"
+      voto: votouClenya ? "clenya" : "abstencao",
+      acao: votouClenya
+        ? "🛠️ Unanimidade Técnica (4 a 0 pra Dra. Clenya = 20,00% cravados no PDF Oficial!)"
+        : "😴 Não votou na urna de BCC (4 técnicos votaram no Relatório Oficial)"
     });
   });
 
   sincronizarVotosZonasComEleitores();
-  popularSelectIdentidadeChat();
 }
 
 function sincronizarVotosZonasComEleitores() {
@@ -344,62 +458,82 @@ function sincronizarVotosZonasComEleitores() {
     const z = ZONAS_RORAIMA.find(item => item.id === el.zonaId);
     if (z) {
       if (el.voto === "clenya") z.clenyaVotes++;
-      else z.caioVotes++;
+      else if (el.voto === "caio") z.caioVotes++;
     }
   });
 }
 
-// 6. CÁLCULO DO PLACAR GERAL E ATUALIZAÇÃO DO DOM
+// 6. CÁLCULO DO PLACAR GERAL (COM FÓRMULA OFICIAL 70/20/10 DO EDITAL) E ATUALIZAÇÃO DO DOM
 function atualizarPlacarGeral(motivoCustomizado = null) {
-  let totalClenya = 0;
-  let totalCaio = 0;
-  let alunosClenya = 0, profsClenya = 0;
-  let alunosCaio = 0, profsCaio = 0;
+  let discClenya = 0, docClenya = 0, tecClenya = 0;
+  let discCaio = 0, docCaio = 0, tecCaio = 0;
+  let totalNulos = 0, totalAbstencoes = 0;
 
   todosEleitores.forEach(el => {
     if (el.voto === "clenya") {
-      totalClenya++;
-      if (el.categoria === "Acadêmico BCC") alunosClenya++;
-      else profsClenya++;
+      if (el.categoria === "Acadêmico BCC") discClenya++;
+      else if (el.categoria === "Docente Efetivo") docClenya++;
+      else tecClenya++;
+    } else if (el.voto === "caio") {
+      if (el.categoria === "Acadêmico BCC") discCaio++;
+      else if (el.categoria === "Docente Efetivo") docCaio++;
+      else tecCaio++;
+    } else if (el.voto === "nulo") {
+      totalNulos++;
     } else {
-      totalCaio++;
-      if (el.categoria === "Acadêmico BCC") alunosCaio++;
-      else profsCaio++;
+      totalAbstencoes++;
     }
   });
 
-  const totalGeral = totalClenya + totalCaio;
-  const pctClenya = ((totalClenya / totalGeral) * 100).toFixed(2);
-  const pctCaio = ((totalCaio / totalGeral) * 100).toFixed(2);
+  const totalClenya = discClenya + docClenya + tecClenya;
+  const totalCaio = discCaio + docCaio + tecCaio;
+
+  // Cálculo oficial ponderado (Item 3.5.1 do Edital: 70% Docentes + 20% Técnicos + 10% Discentes sobre votos válidos de cada categoria)
+  const validDoc = Math.max(1, docClenya + docCaio);
+  const validTec = Math.max(1, tecClenya + tecCaio);
+  const validDisc = Math.max(1, discClenya + discCaio);
+
+  const pondClenya = ((docClenya / validDoc) * 70) + ((tecClenya / validTec) * 20) + ((discClenya / validDisc) * 10);
+  const pondCaio = ((docCaio / validDoc) * 70) + ((tecCaio / validTec) * 20) + ((discCaio / validDisc) * 10);
+
+  const pctClenya = pondClenya.toFixed(2);
+  const pctCaio = pondCaio.toFixed(2);
 
   // Atualiza textos
   document.getElementById("pctClenya").textContent = pctClenya.replace(".", ",") + "%";
   document.getElementById("pctCaio").textContent = pctCaio.replace(".", ",") + "%";
   document.getElementById("votesClenya").textContent = totalClenya;
   document.getElementById("votesCaio").textContent = totalCaio;
-  document.getElementById("rawClenya").textContent = `(${alunosClenya} alunos • ${profsClenya} serv/profs)`;
-  document.getElementById("rawCaio").textContent = `(${alunosCaio} alunos • ${profsCaio} serv/profs)`;
+  document.getElementById("rawClenya").textContent = `(${discClenya} discentes • ${docClenya} docentes • ${tecClenya} técnicos)`;
+  document.getElementById("rawCaio").textContent = `(${discCaio} discentes • ${docCaio} docentes • ${tecCaio} técnicos)`;
 
   // Barra Cabo de Guerra
   document.getElementById("barClenya").style.width = `${pctClenya}%`;
   document.getElementById("barCaio").style.width = `${pctCaio}%`;
-  document.getElementById("barLabelClenya").textContent = `${Number(pctClenya).toFixed(1)}%`;
-  document.getElementById("barLabelCaio").textContent = `${Number(pctCaio).toFixed(1)}%`;
+  document.getElementById("barLabelClenya").textContent = `${pctClenya.replace(".", ",")}%`;
+  document.getElementById("barLabelCaio").textContent = `${pctCaio.replace(".", ",")}%`;
 
   // Diferença e Coroa de Líder
-  const diff = Math.abs(totalClenya - totalCaio);
-  document.getElementById("voteDiff").textContent = diff === 0 ? "EMPATE!" : `${diff} ${diff === 1 ? "VOTO" : "VOTOS"}`;
+  const diffNominal = Math.abs(totalClenya - totalCaio);
+  const diffPct = Math.abs(pondClenya - pondCaio).toFixed(2).replace(".", ",");
+  document.getElementById("voteDiff").textContent =
+    diffNominal === 0 && diffPct === "0,00"
+      ? "EMPATE!"
+      : `+${diffPct}% (${diffNominal} VOTOS)`;
 
   const cardClenya = document.getElementById("cardClenya");
   const cardCaio = document.getElementById("cardCaio");
   const crownClenya = document.getElementById("crownClenya");
   const crownCaio = document.getElementById("crownCaio");
 
-  if (totalClenya >= totalCaio) {
+  if (pondClenya >= pondCaio) {
     liderAtual = "clenya";
     cardClenya.classList.add("leading-clenya");
     cardCaio.classList.remove("leading-caio");
     crownClenya.style.display = "block";
+    crownClenya.textContent = modoOficialAtivo
+      ? "👑 ELEITA OFICIALMENTE (1º LUGAR • 70,65% NO PDF!)"
+      : "👑 NA FRENTE (SIMULAÇÃO DE RECONTAGEM)";
     crownCaio.style.display = "none";
   } else {
     liderAtual = "caio";
@@ -410,60 +544,93 @@ function atualizarPlacarGeral(motivoCustomizado = null) {
   }
 
   // Atualiza contadores da tabela
-  document.getElementById("statTotalVoters").textContent = totalGeral;
+  document.getElementById("statTotalVoters").textContent = todosEleitores.length;
   document.getElementById("statClenyaVoters").textContent = totalClenya;
   document.getElementById("statCaioVoters").textContent = totalCaio;
+  const nullEl = document.getElementById("statNullVoters");
+  if (nullEl) nullEl.textContent = `${totalNulos} Aluno${totalNulos !== 1 ? "s" : ""}`;
+  const abstEl = document.getElementById("statAbstVoters");
+  if (abstEl) abstEl.textContent = `${totalAbstencoes}`;
 
-  // Atualiza porcentagem fictícia das urnas (98.70% a 99.99%)
-  const fakeUrnaPct = (98.5 + Math.random() * 1.48).toFixed(2).replace(".", ",");
-  document.getElementById("urnasPct").textContent = `${fakeUrnaPct}%`;
+  // Atualiza porcentagem das urnas
+  document.getElementById("urnasPct").textContent = modoOficialAtivo
+    ? "100,00% OFICIAL"
+    : "99,99% (RECONTAGEM PARALELA)";
 
   // Banner de evento ao vivo
   const agora = new Date();
-  const horaFmt = agora.toTimeString().split(" ")[0];
+  const horaFmt = modoOficialAtivo ? "11:43:23" : agora.toTimeString().split(" ")[0];
   document.getElementById("eventTime").textContent = horaFmt;
 
   if (motivoCustomizado) {
     document.getElementById("leadReason").textContent = motivoCustomizado;
-    document.getElementById("eventMsg").innerHTML = `<strong>VIRADA NA APURAÇÃO:</strong> ${motivoCustomizado}`;
+    document.getElementById("eventMsg").innerHTML = `<strong>${modoOficialAtivo ? "RELATÓRIO OFICIAL UERR (26/11):" : "SIMULAÇÃO DE RECONTAGEM:"}</strong> ${motivoCustomizado}`;
   }
 }
 
-// 7. MOTOR DE ALTERNÂNCIA (UMA VEZ UM GANHANDO, DEPOIS O OUTRO!)
-function executarViradaDramatica(forcarLider = null) {
-  // Se Clenya está ganhando, vira para Caio; se Caio está ganhando, vira para Clenya
-  const novoLider = forcarLider || (liderAtual === "clenya" ? "caio" : "clenya");
-  const perdedorDaRodada = novoLider === "clenya" ? "caio" : "clenya";
-
-  // Escolhe de 2 a 5 eleitores do candidato que estava na frente e vira o voto deles em bairros chave
-  const candidatosVirada = todosEleitores.filter(
-    e => e.voto === perdedorDaRodada && !e.nome.includes("CLENYA") && !e.nome.includes("CAIO DE JESUS")
-  );
-
-  // Embaralha e vira alguns votos para garantir que o novoLider passe à frente por 1 a 4 votos
-  const qtdVirar = Math.min(candidatosVirada.length, Math.floor(Math.random() * 3) + 3);
-  for (let i = 0; i < qtdVirar; i++) {
-    const idxSorteado = Math.floor(Math.random() * candidatosVirada.length);
-    const eleitor = candidatosVirada.splice(idxSorteado, 1)[0];
-    if (eleitor) {
-      eleitor.voto = novoLider;
-      eleitor.acao = novoLider === "clenya"
-        ? "Virou voto após promessa de aprovação automática no TCC!"
-        : "Virou voto após workshop de Blender 3D + Linux!";
-    }
+// 7. MOTOR DE ALTERNÂNCIA E RESTAURAÇÃO DO RESULTADO OFICIAL
+function restaurarDadosOficiais() {
+  carregarDistribuicaoOficial();
+  modoOficialAtivo = true;
+  loopSimulacaoAtivo = false;
+  const btnLoop = document.getElementById("btnToggleSimLoop");
+  if (btnLoop) {
+    btnLoop.textContent = "🔒 OFICIAL TRAVADO (LIGAR ZOEIRA 🔄)";
+    btnLoop.classList.remove("sim-active");
+  }
+  const subDetail = document.getElementById("modeSubDetail");
+  if (subDetail) {
+    subDetail.textContent = "(Exibindo os dados reais do Relatório Oficial da UERR — 70,65% x 29,35%)";
   }
 
-  // Garante matematicamente que o novoLider ficou na frente
-  let contagemNovo = todosEleitores.filter(e => e.voto === novoLider).length;
-  let contagemOutro = todosEleitores.length - contagemNovo;
-  if (contagemNovo <= contagemOutro) {
-    const extras = todosEleitores.filter(
-      e => e.voto === perdedorDaRodada && !e.nome.includes("CLENYA") && !e.nome.includes("CAIO DE JESUS")
-    );
-    const falta = (contagemOutro - contagemNovo) + 2;
-    for (let j = 0; j < falta && j < extras.length; j++) {
-      extras[j].voto = novoLider;
-    }
+  atualizarPlacarGeral("Relatório Oficial 26/11/2026 às 11:43:23 restaurado: Dra. Clenya 70,65% (3 Doc, 4 Téc, 32 Disc) x Msc. Caio 29,35% (2 Doc, 0 Téc, 5 Disc) + 1 Nulo!");
+  renderizarCardsBairros();
+  atualizarMarcadoresMapa();
+  inspecionarZona(zonaSelecionadaId);
+  renderizarTabelaEleitores();
+
+  adicionarMensagemChat({
+    autor: "🏛️ COMISSÃO ELEITORAL UERR",
+    bairro: "Relatório Oficial 26/11",
+    texto: "✅ DADOS OFICIAIS RESTAURADOS: Dra. Clenya Rejane Barros de Lima ELEITA com 70,65% (3 Docentes, 4 Técnicos, 32 Discentes) contra 29,35% do Msc. Caio Gregoratto (2 Docentes, 0 Técnicos, 5 Discentes) e 1 Voto Nulo Discente!",
+    sistema: true
+  });
+}
+
+function executarViradaDramatica(forcarLider = null) {
+  modoOficialAtivo = false;
+  const subDetail = document.getElementById("modeSubDetail");
+  if (subDetail) {
+    subDetail.textContent = "(Modo Simulação/Recontagem Paralela ativo! Clique em '📄 DADOS OFICIAIS (70,65%)' no topo para voltar ao PDF real)";
+  }
+
+  // Se pediu Clenya especificamente e quer ver os dados oficiais de vitória dela:
+  const novoLider = forcarLider || (liderAtual === "clenya" ? "caio" : "clenya");
+
+  if (novoLider === "caio") {
+    // Em uma realidade paralela onde os 35 alunos ausentes acordaram e os docentes/técnicos viraram pro Caio!
+    todosEleitores.forEach((el, idx) => {
+      if (el.nome.includes("CLENYA")) {
+        el.voto = "clenya";
+      } else if (el.nome.includes("CAIO DE JESUS")) {
+        el.voto = "caio";
+      } else if (el.categoria === "Docente Efetivo") {
+        el.voto = idx % 2 === 0 ? "caio" : "clenya"; // 3 a 2 pro Caio nos docentes
+        el.acao = "🔄 Recontagem Paralela: Virou voto docente para o Msc. Caio (Blender 3D)!";
+      } else if (el.categoria === "Técnico TI") {
+        el.voto = idx < 3 ? "caio" : "clenya";
+        el.acao = "🔄 Recontagem Paralela: Servidor Linux compilou voto técnico pro Msc. Caio!";
+      } else {
+        // Os 35 alunos que tinham faltado acordaram e votaram no Caio!
+        if (el.voto === "abstencao" || el.voto === "nulo" || idx % 3 === 0) {
+          el.voto = "caio";
+          el.acao = "⚡ Acordou às 11:44 após o PDF oficial e votou no Msc. Caio na recontagem paralela!";
+        }
+      }
+    });
+  } else {
+    // Volta para a vitória oficial esmagadora da Dra. Clenya (70,65%)
+    carregarDistribuicaoOficial();
   }
 
   sincronizarVotosZonasComEleitores();
@@ -477,11 +644,10 @@ function executarViradaDramatica(forcarLider = null) {
   inspecionarZona(zonaSelecionadaId);
   renderizarTabelaEleitores();
 
-  // Manda alerta automático no chat
   adicionarMensagemChat({
     autor: "🚨 TSE-UERR BOT",
     bairro: "Plantão Boa Vista",
-    texto: `${novoLider === "clenya" ? "🟣 DRA. CLENYA PASSOU NA FRENTE!" : "🟢 MSC. CAIO ASSUMIU A LIDERANÇA!"} ${motivo}`,
+    texto: `${novoLider === "clenya" ? "🟣 VITÓRIA OFICIAL DRA. CLENYA (70,65%)!" : "🟢 REALIDADE ALTERNATIVA: MSC. CAIO VIROU!"} ${motivo}`,
     sistema: true
   });
 }
@@ -566,7 +732,10 @@ function inspecionarZona(zonaId) {
   ul.innerHTML = "";
   eleitoresDaZona.forEach(el => {
     const li = document.createElement("li");
-    const badge = el.voto === "clenya" ? "🟣 Clenya (10)" : "🟢 Caio (20)";
+    let badge = "😴 Ausente";
+    if (el.voto === "clenya") badge = "🟣 Clenya (1º)";
+    else if (el.voto === "caio") badge = "🟢 Caio (2º)";
+    else if (el.voto === "nulo") badge = "⚠️ NULO (1)";
     li.innerHTML = `<span>${el.nome}</span> <strong>${badge}</strong>`;
     ul.appendChild(li);
   });
@@ -610,7 +779,7 @@ function renderizarCardsBairros() {
   });
 }
 
-// 9. TABELA OFICIAL DE ELEITORES (FILTRO E BUSCA)
+// 9. TABELA OFICIAL DE ELEITORES (FILTRO E BUSCA) + TABELA DOS 18 CURSOS DA UERR
 function renderizarTabelaEleitores() {
   const tbody = document.getElementById("votersTableBody");
   const termo = (document.getElementById("voterSearchInput").value || "").toLowerCase().trim();
@@ -619,15 +788,29 @@ function renderizarTabelaEleitores() {
   tbody.innerHTML = "";
 
   const filtrados = todosEleitores.filter(el => {
-    const matchNome = el.nome.toLowerCase().includes(termo) || el.zonaNome.toLowerCase().includes(termo);
+    const statusStr = el.voto === "clenya" ? "clenya" : el.voto === "caio" ? "caio" : el.voto === "nulo" ? "nulo" : "abstenção ausente";
+    const matchNome =
+      el.nome.toLowerCase().includes(termo) ||
+      el.zonaNome.toLowerCase().includes(termo) ||
+      statusStr.includes(termo);
     const matchCat = catFiltro === "all" || el.categoria === catFiltro;
     return matchNome && matchCat;
   });
 
   filtrados.forEach(el => {
     const tr = document.createElement("tr");
-    const pillClass = el.voto === "clenya" ? "pill-clenya" : "pill-caio";
-    const pillText = el.voto === "clenya" ? "🟣 CHAPA 10 • DRA. CLENYA" : "🟢 CHAPA 20 • MSC. CAIO";
+    let pillClass = "pill-abst";
+    let pillText = "😴 ABSTENÇÃO (NÃO VOTOU)";
+    if (el.voto === "clenya") {
+      pillClass = "pill-clenya";
+      pillText = "🟣 VOTO VÁLIDO • DRA. CLENYA (70,65%)";
+    } else if (el.voto === "caio") {
+      pillClass = "pill-caio";
+      pillText = "🟢 VOTO VÁLIDO • MSC. CAIO (29,35%)";
+    } else if (el.voto === "nulo") {
+      pillClass = "pill-null";
+      pillText = "⚠️ VOTO NULO DISCENTE (1 NO PDF!)";
+    }
 
     tr.innerHTML = `
       <td><strong>#${el.num}</strong></td>
@@ -641,23 +824,47 @@ function renderizarTabelaEleitores() {
   });
 }
 
-// 10. CHAT EM TEMPO REAL (COM BOTS DOS ALUNOS DO PDF + PÉROLAS DO GRUPO + EDITAL 01/2026)
+function renderizarTabelaTodosCursos() {
+  const tbody = document.getElementById("allCoursesTableBody");
+  if (!tbody) return;
+  tbody.innerHTML = "";
+
+  RELATORIO_TODOS_CURSOS_UERR.forEach(item => {
+    const tr = document.createElement("tr");
+    if (item.destaque === "win-bcc") tr.className = "row-winner-official";
+    else if (item.destaque === "sec-bcc") tr.className = "row-second-official";
+    else if (item.destaque === "zero-agrarias") tr.className = "row-null-official";
+
+    tr.innerHTML = `
+      <td><strong>${item.curso}</strong></td>
+      <td><strong>${item.colocacao}</strong> — ${item.candidato}</td>
+      <td><strong>${item.doc}</strong></td>
+      <td><strong>${item.tec}</strong></td>
+      <td><strong>${item.disc}</strong></td>
+      <td style="font-size:0.75rem; color: var(--text-muted);">${item.brancosNulos}</td>
+      <td><strong style="color: ${item.destaque === 'win-bcc' ? '#d8b4fe' : item.destaque === 'sec-bcc' ? '#6ee7b7' : '#fde047'}; font-family: var(--font-mono);">${item.pct}</strong></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// 10. CHAT EM TEMPO REAL (COM OS DADOS OFICIAIS DO RELATÓRIO DE 26/11/2026 ÀS 11:43:23)
 const MENSAGENS_BOTS_ZOACAO = [
-  { autor: "Plantão /indisponivel", bairro: "Portal UERR", texto: "Votação para Coordenações de Curso 2026: Período encerrado. As eleições foram encerradas hoje, às 22:00:00. E o resultado preliminar SÓ SAI AMANHÃ (26/11)!" },
-  { autor: "Leitor do Edital 01/2026", bairro: "Canarinho", texto: "Gente vcs viram o Item 3.5.1 do Edital?? Professor pesa 70%, Técnico 20% e os 73 alunos de Computação juntos pesam só 10% (0,13% cada aluno) kkkkkk 🤡" },
-  { autor: "Eleitor Ansioso do Grupo", bairro: "Canarinho", texto: "saiu o resultado, já? @Valbert Breno faz a apuração dos votos aí que o site deu /indisponivel!" },
-  { autor: "Fiscal do TSE-UERR", bairro: "Pintolândia", texto: "deixa o Valbert terminar de calibrar a planilha de apuração que jaja ele posta antes da Comissão Eleitoral kkkkk" },
-  { autor: "VALBERT BRENO GOMES FARIAS", bairro: "Canarinho", texto: "Cadê, já encerrou às 22:00:00! Espero que já saia amanhã cedo!" },
-  { autor: "Analista de Geopolítica BCC", bairro: "Mecejana", texto: "Por isso que o resultado só sai dia 26/11, tão contabilizando os votos do Nordeste na mão! 🌵🗳️" },
-  { autor: "Especialista no Item 3.6", bairro: "Caçari", texto: "Se empatar no cálculo 70/20/10, o Item 3.6 do Edital diz que desempata por: 1º Maior grau acadêmico, 2º Tempo de UERR, 3º Maior idade!" },
-  { autor: "WANDEILSON FERNANDES COSTA", bairro: "Boa Vista - RR", texto: "coe valbert, enquanto a UERR só solta o resultado amanhã, nossa apuração paralela aqui não para 💻🔥" },
-  { autor: "Comentarista de Urna", bairro: "São Pedro", texto: "KAKKEKWKDKkKKKKKKKKK olha a foto da urna, professor Caio tá no shape / inchado de tanto programar em C!" },
-  { autor: "ADRIAN HARR RODRIGUES", bairro: "Canarinho", texto: "Então meu voto valeu 0,1369%?? Vou cobrar 0,1369 pontos na média de Compiladores amanhã!" },
-  { autor: "ALEXANDRE YUKIO OYAMA DE SOUZA", bairro: "Paraviana", texto: "Acabei de ver o Lattes da Dra. Clenya, 54 bancas de TCC! Ela já avaliou até o Edital 01/2026 kkkkk" },
-  { autor: "JOSE ARTHUR SANTANA ECHECHURRY CRUZ", bairro: "Caçari", texto: "Se o Prof. Caio ganhar dia 26/11, a posse em 1º de fevereiro de 2027 vai ser renderizada no Blender 3D!" },
-  { autor: "GELSON BARROS DOS SANTOS JUNIOR", bairro: "Mecejana", texto: "Alimentei minha LLM da UERR com o Edital SEI 24727420 e ela respondeu: resultado só amanhã!" },
-  { autor: "GABRIELA MONTEIRO ALEM", bairro: "São Pedro", texto: "Gente é verdade que o Caio ainda tem Google Talk no Lattes em 2026?? Olhem a linha 32 kkkkk" },
-  { autor: "PIETRA MARIA CHAVES DE OLIVEIRA", bairro: "Canarinho", texto: "Uma hora a Clenya ganha, 9 segundos depois o Caio vira... até sair o resultado oficial amanhã ninguém dorme!" }
+  { autor: "Relatório Oficial UERR (11:43:23)", bairro: "Portal UERR", texto: "🏆 SAIU O PDF OFICIAL! Coordenador(a) de Ciência da Computação: 1º CLENYA REJANE BARROS DE LIMA (70,65% - 3 Docentes, 4 Técnicos, 32 Discentes) vs 2º CAIO DE JESUS GREGORATTO (29,35% - 2 Docentes, 0 Técnicos, 5 Discentes)!" },
+  { autor: "VALBERT BRENO GOMES FARIAS", bairro: "Canarinho", texto: "Falei que saía hoje cedo!! Olha a matemática: 3/5 docentes = 42%, 4/4 técnicos = 20%, 32/37 alunos = 8,65% -> 42 + 20 + 8,65 = 70,65% CRAVADOS pra Dra. Clenya! 📊🔥" },
+  { autor: "WANDEILSON FERNANDES COSTA", bairro: "Boa Vista - RR", texto: "Já atualizei o site com o PDF oficial de 26/11 kkkkkk mas quem foi o 1 ALUNO que votou NULO em Ciência da Computação?!" },
+  { autor: "Detetive do Voto Nulo", bairro: "Canarinho", texto: "32 alunos votaram na Clenya, 5 votaram no Caio, 0 em Branco e 1 NULO! Apareça imediatamente o autor do voto nulo kkkkk 🕵️‍♂️" },
+  { autor: "Fiscal da Abstenção", bairro: "Pintolândia", texto: "Gente, tinha 73 alunos de Computação na lista do SEI e só 38 votaram (37 válidos + 1 nulo)! 35 alunos simplesmente DORMIRAM e perderam a eleição!" },
+  { autor: "Analista dos Técnicos TI", bairro: "Canarinho", texto: "O verdadeiro capote foi nos Técnicos-administrativos: 4 a 0 pra Dra. Clenya! Garantiu os 20% inteirinhos do peso técnico sem dividir nada!" },
+  { autor: "Observador do Colegiado", bairro: "Paraviana", texto: "Nos professores foi 3 a 2 (Clenya 42% vs Caio 28%)! Se 1 professor tivesse virado o voto pro Caio, os docentes ficariam 28% a 42%!" },
+  { autor: "Curioso do PDF Geral (Pág. 6/6)", bairro: "Rorainópolis", texto: "Gente e Ciências Agrárias na página 6 do PDF que teve ZERO votos?! 0 Docente, 0 Técnico e 0 Discente kkkkkkk 👻🌾" },
+  { autor: "Repórter do Curso de Turismo", bairro: "Centro", texto: "Em Turismo a professora Rosijane ganhou com 3 votos de professores, 0 técnicos e ZERO alunos votando (70,00%)! E em Letras teve 1 PROFESSOR que votou NULO!" },
+  { autor: "ADRIAN HARR RODRIGUES", bairro: "Canarinho", texto: "Ciência da Computação foi o ÚNICO curso da UERR inteira que teve disputa entre 2 candidatos! Os outros 17 cursos foram candidato único!" },
+  { autor: "ALEXANDRE YUKIO OYAMA DE SOUZA", bairro: "Paraviana", texto: "Dra. Clenya eleita com 70,65%! Podem separar o terno que as 54 bancas de TCC por semestre estão oficialmente confirmadas para 2027/2029!" },
+  { autor: "JOSE ARTHUR SANTANA ECHECHURRY CRUZ", bairro: "Caçari", texto: "Os 5 alunos que votaram no Prof. Caio já estão convidados para o grupo VIP de Blender 3D e Google Talk no Linux!" },
+  { autor: "GELSON BARROS DOS SANTOS JUNIOR", bairro: "Mecejana", texto: "32 alunos na Clenya valeram 8,65% e os 2 professores do Caio valeram 28,00%! A matemática do Item 3.5.1 é implacável kkkkk" },
+  { autor: "GABRIELA MONTEIRO ALEM", bairro: "São Pedro", texto: "Pelo menos Computação teve 38 alunos votando! Só perdeu pra Contábeis (43 alunos), batemos Medicina (29 alunos) e Direito (18 alunos)!" },
+  { autor: "PIETRA MARIA CHAVES DE OLIVEIRA", bairro: "Canarinho", texto: "Parabéns Dra. Clenya (70,65%) e Prof. Caio (29,35%) pela única eleição com emoção de verdade na UERR 2026! 🎉🖥️" }
 ];
 
 function popularSelectIdentidadeChat() {
@@ -791,18 +998,43 @@ document.addEventListener("DOMContentLoaded", () => {
   renderizarTabelaEleitores();
   iniciarChatSimulado();
 
-  // Timer regressivo para virada automática (uma vez um ganhando, depois o outro!)
+  // Timer opcional para modo zoeira (desligado por padrão para exibir os 70,65% x 29,35% reais do PDF!)
   setInterval(() => {
+    if (!loopSimulacaoAtivo) return;
     contadorRegressivo--;
     if (contadorRegressivo <= 0) {
       executarViradaDramatica();
       contadorRegressivo = cicloAutomaticoSegundos;
     }
-    const fmt = contadorRegressivo < 10 ? `0${contadorRegressivo}s` : `${contadorRegressivo}s`;
-    document.getElementById("nextBatchTimer").textContent = fmt;
+    const btnLoop = document.getElementById("btnToggleSimLoop");
+    if (btnLoop) {
+      const fmt = contadorRegressivo < 10 ? `0${contadorRegressivo}s` : `${contadorRegressivo}s`;
+      btnLoop.textContent = `🔄 ZOEIRA ATIVA (VIRADA EM ${fmt})`;
+    }
   }, 1000);
 
-  // Botão Forçar Virada
+  // Botão Restaurar Dados Oficiais (70,65% x 29,35%)
+  const btnRestore = document.getElementById("btnRestoreOfficial");
+  if (btnRestore) {
+    btnRestore.addEventListener("click", restaurarDadosOficiais);
+  }
+
+  // Botão Ligar/Desligar Loop de Simulação
+  const btnToggleLoop = document.getElementById("btnToggleSimLoop");
+  if (btnToggleLoop) {
+    btnToggleLoop.addEventListener("click", () => {
+      loopSimulacaoAtivo = !loopSimulacaoAtivo;
+      if (loopSimulacaoAtivo) {
+        contadorRegressivo = cicloAutomaticoSegundos;
+        btnToggleLoop.classList.add("sim-active");
+        executarViradaDramatica();
+      } else {
+        restaurarDadosOficiais();
+      }
+    });
+  }
+
+  // Botão Simular Virada
   document.getElementById("btnForceFlip").addEventListener("click", () => {
     executarViradaDramatica();
     contadorRegressivo = cicloAutomaticoSegundos;
@@ -919,7 +1151,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Botões de Vitória Fuzuê no Topo e Controles da Tela de Vitória
   document.getElementById("btnWinClenya").addEventListener("click", () => {
-    executarViradaDramatica("clenya");
+    restaurarDadosOficiais();
     dispararTelaVitoriaFuzue("clenya");
   });
 
@@ -937,7 +1169,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("btnInvertWinner").addEventListener("click", () => {
     const outro = vencedorFuzueAtual === "clenya" ? "caio" : "clenya";
-    executarViradaDramatica(outro);
+    if (outro === "clenya") restaurarDadosOficiais();
+    else executarViradaDramatica("caio");
     dispararTelaVitoriaFuzue(outro);
   });
 });
@@ -951,37 +1184,37 @@ let particulasFuzue = [];
 
 const DADOS_VITORIA = {
   clenya: {
-    chapa: "CHAPA 10 • PARTIDO DA ENGENHARIA DE SOFTWARE, MOODLE & ABNT",
+    chapa: "1º LUGAR OFICIAL • RELATÓRIO DAS ELEIÇÕES UERR (26/11/2026 ÀS 11:43:23)",
     nome: "DRA. CLENYA REJANE BARROS DE LIMA",
     img: "clenya.gif",
-    badge: "🚨 MATEMATICAMENTE ELEITA ÀS 22:00h (APÓS CONTABILIZAR OS VOTOS DO NORDESTE!)",
+    badge: "🏆 ELEITA OFICIALMENTE COM 70,65% (3 DOCENTES • 4 TÉCNICOS • 32 DISCENTES)!",
     stamp: "👑 COORDENADORA ELEITA 2027/2029",
-    quote: "\"Agradeço aos 73 alunos do PDF, ao Valbert pela apuração das 22h e declaro que todo mundo já está escalado para 54 bancas de TCC amanhã às 08h!\"",
-    origem: "Urnas do Nordeste + Canarinho + Pacaraima",
+    quote: "\"Agradeço aos 32 alunos (8,65%), aos 4 técnicos pela unanimidade (20,00%) e aos 3 colegas docentes (42,00%)! Quanto aos 35 alunos que não votaram e ao 1 que votou NULO: nos vemos nas 54 bancas de TCC!\"",
+    origem: "3 Docentes (42%) + 4 Técnicos (20%) + 32 Alunos (8,65%)",
     decretos: [
-      "📚 <strong>DECRETO Nº 01:</strong> O TCC agora começa no 1º semestre e terá 54 bancas avaliadoras presididas pela Dra. Clenya.",
-      "📏 <strong>DECRETO Nº 02:</strong> Mensagem no grupo do WhatsApp fora das normas da ABNT (margem 3x3x2x2) perderá 2,0 pontos na média.",
-      "🌐 <strong>DECRETO Nº 03:</strong> Todo aluno deverá concluir 24 cursos de Moodle EaD e Gamificação antes de pedir colação de grau.",
-      "☕ <strong>DECRETO Nº 04:</strong> Wandeilson Fernandes e Valbert Breno estão nomeados Ministros Vitalícios do SEI e da Comissão Eleitoral!",
-      "🖥️ <strong>DECRETO Nº 05:</strong> O Portal da Transparência e o SIGAA passarão por auditoria de Usabilidade obrigatória toda sexta-feira.",
-      "🎉 <strong>DECRETO Nº 06:</strong> Feriado acadêmico decretado no Canarinho para comemorar a vitória da Chapa 10!"
+      "📊 <strong>HOMOLOGAÇÃO 70,65%:</strong> Vitória oficial confirmada com 39 votos nominais válidos contra 7 (29,35%) e 1 lendário voto nulo discente.",
+      "🛠️ <strong>TROFÉU UNANIMIDADE TÉCNICA:</strong> Os 4 Técnicos-Administrativos que garantiram 4x0 (20% inteiros) têm café expresso vitalício na Coordenação.",
+      "🕵️ <strong>CPI DO VOTO NULO & ABSTENÇÕES:</strong> Investigação aberta no SEI para descobrir quem foi o 1 aluno que votou NULO e acordar os 35 alunos que dormiram.",
+      "📚 <strong>DECRETO Nº 01 (BANCAS):</strong> O TCC agora começa no 1º semestre e terá 54 bancas avaliadoras presididas pela Dra. Clenya nas normas ABNT.",
+      "🌐 <strong>DECRETO Nº 02 (MOODLE):</strong> Todo aluno deverá concluir 24 cursos de Moodle EaD e Gamificação antes de pedir colação de grau.",
+      "☕ <strong>DECRETO Nº 03:</strong> Wandeilson Fernandes e Valbert Breno estão nomeados Auditores Vitalícios das Eleições de Ciência da Computação!"
     ]
   },
   caio: {
-    chapa: "CHAPA 20 • PARTIDO DO BLENDER 3D, VISÃO COMPUTACIONAL & AGRO-LINUX",
+    chapa: "REALIDADE ALTERNATIVA • RECONTAGEM PARALELA EM 60 FPS NO BLENDER 3D",
     nome: "MSC. CAIO DE JESUS GREGORATTO",
     img: "caio.gif",
-    badge: "🚨 ELEITO EM 60 FPS ÀS 22:00h (COM VOTOS DO NORDESTE + PINTOLÂNDIA!)",
-    stamp: "👑 COORDENADOR ELEITO 2027/2029",
-    quote: "\"O shape falou mais alto na foto da urna! Menos formatação ABNT e mais modelagem 3D no Blender, OpenGL em C e Digitação 60h do SENAC!\"",
-    origem: "Urnas do Pintolândia + São Pedro + Nordeste",
+    badge: "🚨 E SE OS 35 ALUNOS AUSENTES TIVESSEM ACORDADO?! VIRADA EM 60 FPS!",
+    stamp: "👑 COORDENADOR (MULTIVERSO LINUX)",
+    quote: "\"No PDF oficial fizemos 29,35% (2 Docentes = 28% e 5 Alunos fiéis = 1,35%), quase empatando nos professores (2x3)! Mas neste multiverso do Blender 3D os 35 alunos que dormiram acordaram!\"",
+    origem: "2 Docentes (28%) + 5 Alunos Raiz + Multiverso Blender",
     decretos: [
-      "🍩 <strong>DECRETO Nº 01:</strong> A matéria de TCC foi substituída por modelar um Trator e um Donut 3D no Blender renderizado em Linux.",
-      "⌨️ <strong>DECRETO Nº 02:</strong> Prova prática de Digitação 60h (padrão SENAC 2002): quem digitar menos de 120 palavras/minuto faz recuperação.",
-      "💬 <strong>DECRETO Nº 03:</strong> O WhatsApp do curso será desativado; toda comunicação oficial será via Google Talk (caiogrego@icomp.ufam.edu.br).",
-      "📹 <strong>DECRETO Nº 04:</strong> Câmeras com IA de 'Detecção de Comportamento Anormal em Multidão' instaladas na fila do corredor do bloco.",
-      "🌾 <strong>DECRETO Nº 05:</strong> Integração oficial Ciência da Computação + Gestão de Agronegócios com GPS Agropecuário em todas as máquinas do Lab.",
-      "💪 <strong>DECRETO Nº 06:</strong> Wandeilson ('vou fazer uma parada aq') e Valbert Breno ganham nota 10 automática pela cobertura das 22h!"
+      "🏅 <strong>MEDALHA AOS 5 ALUNOS FIÉIS:</strong> Os 5 discentes que votaram no Caio no relatório oficial têm nota 10 automática em Computação Gráfica e IA.",
+      "👨‍🏫 <strong>QUASE EMPATE DOCENTE (3x2):</strong> Com 2 votos docentes (28,00% da eleição), bastava 1 professor virar para o placar docente inverter para 42% a 28%!",
+      "🍩 <strong>DECRETO DO MULTIVERSO:</strong> A matéria de TCC foi substituída por modelar um Trator e um Donut 3D no Blender renderizado em Linux.",
+      "⌨️ <strong>PROVA SENAC 2002:</strong> Curso obrigatório de Digitação 60h para os 35 alunos que esqueceram de digitar o voto no sistema CAFe.",
+      "💬 <strong>GOOGLE TALK OFICIAL:</strong> O WhatsApp do curso será substituído pelo Google Talk (caiogrego@icomp.ufam.edu.br).",
+      "🌾 <strong>INTEGRAÇÃO AGRO-BCC:</strong> Transferência solidária de votos para o curso de Ciências Agrárias que terminou o relatório oficial com 0 votos!"
     ]
   }
 };

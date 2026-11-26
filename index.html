@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TSE-UERR 2026 | Apuração Oficial (SQN) - Coordenação Ciência da Computação</title>
-  <meta name="description" content="Acompanhe em tempo real a apuração mais tensa de Roraima: Eleição para Coordenação de Ciência da Computação UERR 2027/2029 - Dra. Clenya vs Msc. Caio Gregoratto" />
+  <title>TSE-UERR 2026 | RESULTADO OFICIAL SAIU (70,65% x 29,35%) - Coordenação Ciência da Computação</title>
+  <meta name="description" content="Relatório Oficial das Eleições UERR (26/11/2026 11:43:23): Dra. Clenya Rejane Barros de Lima ELEITA com 70,65% (3 Docentes, 4 Técnicos, 32 Discentes) vs Msc. Caio Gregoratto 29,35% (2 Docentes, 0 Técnicos, 5 Discentes)!" />
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,15 +26,15 @@
     </div>
     <div class="ticker-track">
       <div class="ticker-content" id="newsTicker">
-        <span>🛑 PLANTÃO 22:00:00: O site oficial eleicoes.uerr.edu.br/coordenador2026/indisponivel FECHOU ("As eleições foram encerradas hoje, às 22:00:00") e a galera descobriu pelo Edital 01/2026 (SEI 24727420) que o Resultado Preliminar SÓ SAI AMANHÃ (26/11)!</span>
+        <span>🏆 RESULTADO OFICIAL SAIU (26/11/2026 às 11:43:23): Relatório das Eleições UERR confirma DRA. CLENYA REJANE BARROS DE LIMA ELEITA com 70,65% contra 29,35% do Msc. Caio de Jesus Gregoratto!</span>
         <span>•</span>
-        <span>⚖️ MATEMÁTICA DO EDITAL (ITEM 3.5.1): Voto de Professor Efetivo pesa 70%, Técnico pesa 20% e os 73 Alunos da Computação juntos pesam só 10% (0,136% por aluno kkkkkk)!</span>
+        <span>📊 NÚMEROS REAIS DO PDF OFICIAL: Dra. Clenya levou 3 Docentes, 4 Técnicos e 32 Discentes (39 votos válidos) | Msc. Caio levou 2 Docentes, 0 Técnicos e 5 Discentes (7 votos válidos) + 1 Voto Nulo Discente!</span>
         <span>•</span>
-        <span>🚨 URGENTE: Galera achou que o resultado saía às 20h, depois às 22h, e agora a Comissão Eleitoral (Profa. Marcella Lima Marinho) jogou o suspense para amanhã!</span>
+        <span>🕵️ MISTÉRIO DO VOTO NULO: Apenas 38 dos 73 alunos de Computação votaram (32 Clenya + 5 Caio + 1 Nulo)! Quem foi o 1 aluno que anulou o voto e os 35 que dormiram?!</span>
         <span>•</span>
-        <span>📊 BASTIDORES: Turma cobra "@Valbert Breno faz a apuração dos votos aí" porque o sistema oficial deu "/indisponivel" e estão contabilizando os votos do Nordeste!</span>
+        <span>🧮 MATEMÁTICA EXATA DO SISTEMA (70/20/10): 70% × (3/5 Docentes = 42,00%) + 20% × (4/4 Técnicos = 20,00%) + 10% × (32/37 Alunos Válidos = 8,65%) = EXATOS 70,65% para Dra. Clenya!</span>
         <span>•</span>
-        <span>📜 ITEM 3.6 DO EDITAL (DESEMPATE): Se empatar na ponderação 70/20/10, ganha quem tiver Maior Grau Acadêmico, Mais Tempo de UERR ou Maior Idade!</span>
+        <span>🌾 CURIOSIDADE DO RELATÓRIO GERAL UERR: Ciências Agrárias teve 0 votos (0 Docente, 0 Técnico, 0 Discente), Turismo teve 0 alunos votando e Computação foi o ÚNICO curso da UERR com disputa de 2 candidatos!</span>
       </div>
     </div>
   </div>
@@ -54,20 +54,23 @@
       <div class="header-controls">
         <div class="status-pill">
           <span class="live-indicator"></span>
-          <span id="cycleStatusText">APURAÇÃO EM TEMPO REAL</span>
+          <span id="cycleStatusText">✅ 100% APURADO (RELATÓRIO OFICIAL 26/11)</span>
         </div>
         <div class="action-buttons">
-          <button class="btn btn-turn" id="btnForceFlip" title="Forçar uma virada dramática agora!">
-            ⚡ FORÇAR VIRADA
+          <button class="btn btn-official" id="btnRestoreOfficial" title="Restaurar os números exatos do PDF Oficial da UERR (70,65% x 29,35%)">
+            📄 DADOS OFICIAIS (70,65%)
+          </button>
+          <button class="btn btn-turn" id="btnForceFlip" title="Ativar/Forçar Recontagem Paralela e virar o jogo!">
+            ⚡ SIMULAR VIRADA
           </button>
           <button class="btn btn-urna" id="btnOpenUrna" title="Simular seu voto na Urna Eletrônica">
             🗳️ VOTAR NA URNA
           </button>
-          <button class="btn btn-win-clenya" id="btnWinClenya" title="Disparar tela de vitória da Dra. Clenya!">
-            👑 VITÓRIA CLENYA!
+          <button class="btn btn-win-clenya" id="btnWinClenya" title="Disparar tela de vitória oficial da Dra. Clenya (70,65%)!">
+            👑 FESTA CLENYA (70,65%)
           </button>
-          <button class="btn btn-win-caio" id="btnWinCaio" title="Disparar tela de vitória do Msc. Caio!">
-            👑 VITÓRIA CAIO!
+          <button class="btn btn-win-caio" id="btnWinCaio" title="Disparar realidade alternativa: Vitória do Msc. Caio!">
+            👑 E SE O CAIO VIRAR?
           </button>
         </div>
       </div>
@@ -77,52 +80,113 @@
   <!-- MAIN CONTAINER -->
   <main class="container main-grid">
 
-    <!-- BANNER OFICIAL DE ENCERRAMENTO ÀS 22:00:00 + REGRAS DO EDITAL 01/2026 -->
-    <section class="closed-alert-banner card-glass">
+    <!-- BANNER DO RELATÓRIO OFICIAL DIVULGADO EM 26/11/2026 ÀS 11:43:23 -->
+    <section class="closed-alert-banner official-out-banner card-glass">
       <div class="closed-top-row">
         <div class="closed-official-quote">
-          <span class="closed-tag">🛑 URNAS LACRADAS ÀS 22:00:00</span>
-          <h3>"Votação para Coordenações de Curso 2026 — Período encerrado. As eleições foram encerradas hoje, às 22:00:00."</h3>
-          <p>O portal oficial (<a href="https://eleicoes.uerr.edu.br/coordenador2026/indisponivel" target="_blank" rel="noopener">eleicoes.uerr.edu.br/coordenador2026/indisponivel</a>) fechou as cortinas e, segundo o <strong>Anexo I do Edital Nº 01/2026 (SEI 24727420)</strong>, o <strong>Resultado Preliminar SÓ SAI AMANHÃ (26/11/2026)</strong>! Enquanto a Comissão Eleitoral não solta o PDF, a apuração paralela do Wandeilson &amp; Valbert segue calculando a fórmula secreta:</p>
+          <span class="closed-tag official-tag">🏆 SAIU O RELATÓRIO OFICIAL (26/11/2026 • 11:43:23)</span>
+          <h3>"Coordenador(a) de Ciência da Computação: 1º CLENYA REJANE BARROS DE LIMA (70,65%) • 2º CAIO DE JESUS GREGORATTO (29,35%)"</h3>
+          <p>O documento oficial (<a href="https://eleicoes.uerr.edu.br/coordenador2026/relatorio" target="_blank" rel="noopener">eleicoes.uerr.edu.br/coordenador2026/relatorio</a>) foi publicado! <strong>Ciência da Computação foi o ÚNICO curso entre todos os 18 da UERR que teve disputa entre 2 candidatos!</strong> Dos 73 alunos aptos no SEI, apenas 38 compareceram às urnas (32 na Dra. Clenya, 5 no Msc. Caio, 0 Brancos e <strong>1 lendário Voto Nulo</strong> — enquanto 35 alunos estavam dormindo ou compilando C!). Confira a tabela idêntica ao PDF oficial:</p>
+
+          <!-- TABELA IDÊNTICA AO PDF OFICIAL -->
+          <div class="official-pdf-table-wrap">
+            <table class="official-pdf-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">Colocação</th>
+                  <th rowspan="2">Candidato (Ciência da Computação)</th>
+                  <th rowspan="2">Voto</th>
+                  <th colspan="3" class="th-group">Número de votos (Relatório Oficial)</th>
+                  <th rowspan="2">Pontuação (%)</th>
+                </tr>
+                <tr>
+                  <th>Docente (70%)</th>
+                  <th>Técnico-adm (20%)</th>
+                  <th>Discente (10%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row-winner-official">
+                  <td><strong>1º 🏆</strong></td>
+                  <td><strong>CLENYA REJANE BARROS DE LIMA</strong></td>
+                  <td><span class="badge-valido">Válido</span></td>
+                  <td><strong>3</strong> <span class="mini-calc">(42,00%)</span></td>
+                  <td><strong>4</strong> <span class="mini-calc">(20,00%)</span></td>
+                  <td><strong>32</strong> <span class="mini-calc">(8,65%)</span></td>
+                  <td class="td-score-win"><strong>70,65%</strong></td>
+                </tr>
+                <tr class="row-second-official">
+                  <td><strong>2º</strong></td>
+                  <td><strong>CAIO DE JESUS GREGORATTO</strong></td>
+                  <td><span class="badge-valido">Válido</span></td>
+                  <td><strong>2</strong> <span class="mini-calc">(28,00%)</span></td>
+                  <td><strong>0</strong> <span class="mini-calc">(0,00%)</span></td>
+                  <td><strong>5</strong> <span class="mini-calc">(1,35%)</span></td>
+                  <td class="td-score-sec"><strong>29,35%</strong></td>
+                </tr>
+                <tr class="row-blank-official">
+                  <td>—</td>
+                  <td>—</td>
+                  <td>Branco</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>—</td>
+                </tr>
+                <tr class="row-null-official">
+                  <td>—</td>
+                  <td><em>O MISTERIOSO ALUNO DO SYNTAX ERROR</em></td>
+                  <td><span class="badge-nulo">Nulo</span></td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td><strong>1 👀</strong></td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+
         <div class="edital-schedule-box">
-          <div class="sched-title">📅 CRONOGRAMA OFICIAL (EDITAL 01/2026)</div>
+          <div class="sched-title">🧮 AUDITORIA DA FÓRMULA OFICIAL (ITEM 3.5.1)</div>
           <ul class="sched-list">
-            <li class="done-step">✅ <strong>25/11 (08h às 22h):</strong> Votação via CAFe (ENCERRADA!)</li>
-            <li class="active-step">⏳ <strong>26/11 (Amanhã!):</strong> Divulgação do Resultado Preliminar em uerr.edu.br</li>
-            <li>📨 <strong>27 e 28/11:</strong> Recursos via <code>ce.coordenacoes2026@uerr.edu.br</code></li>
-            <li>🏆 <strong>30/11 às 18h:</strong> Resultado Final Homologado (Posse: 01/02/2027)</li>
+            <li class="done-step">✅ <strong>25/11 às 22h:</strong> Votação Encerrada (47 votos registrados em BCC)</li>
+            <li class="active-step">🏆 <strong>26/11 às 11:43:23:</strong> Relatório Oficial Emitido (Clenya 70,65% x Caio 29,35%)</li>
+            <li>👨‍🏫 <strong>Docentes (5 votaram):</strong> 3 Clenya (60% × 70 = <strong>42,00%</strong>) vs 2 Caio (40% × 70 = <strong>28,00%</strong>)</li>
+            <li>🛠️ <strong>Técnicos (4 votaram):</strong> 4 Clenya (100% × 20 = <strong>20,00%</strong>) vs 0 Caio (<strong>0,00%</strong> — Capote Técnico!)</li>
+            <li>🎓 <strong>Discentes (37 válidos + 1 nulo):</strong> 32 Clenya (86,486% × 10 = <strong>8,65%</strong>) vs 5 Caio (13,513% × 10 = <strong>1,35%</strong>)</li>
+            <li>😴 <strong>Abstenção Histórica:</strong> 35 dos 73 alunos do PDF (47,9%) esqueceram a senha do CAFe!</li>
           </ul>
         </div>
       </div>
 
       <div class="edital-weights-grid">
         <div class="weight-card">
-          <span class="w-pct">70%</span>
+          <span class="w-pct">42% vs 28%</span>
           <div class="w-desc">
-            <strong>Peso dos Professores Efetivos</strong>
-            <span>Item 3.5.1 (a) — Resolução CONUNI 023/2019: 1 voto docente equivale a quase uma turma inteira!</span>
+            <strong>Placar nos Docentes (3 a 2)</strong>
+            <span>Peso 70%: Só um voto de diferença entre os professores (3 x 2), valendo 14% de vantagem!</span>
           </div>
         </div>
         <div class="weight-card">
-          <span class="w-pct">20%</span>
+          <span class="w-pct">20% vs 0%</span>
           <div class="w-desc">
-            <strong>Peso dos Técnicos Administrativos</strong>
-            <span>Item 3.5.1 (b) — Servidores efetivos vinculados à coordenação do curso.</span>
+            <strong>Unanimidade nos Técnicos (4 a 0)</strong>
+            <span>Peso 20%: Todos os 4 técnicos administrativos que votaram foram 100% na Dra. Clenya!</span>
           </div>
         </div>
         <div class="weight-card">
-          <span class="w-pct">10%</span>
+          <span class="w-pct">32 vs 5</span>
           <div class="w-desc">
-            <strong>Peso dos 73 Alunos (Discentes)</strong>
-            <span>Item 3.5.1 (c) — Cada um dos 73 alunos do PDF vale exatos <strong>0,1369%</strong> da eleição kkkkkk!</span>
+            <strong>Lavada nos Alunos (+ 1 Nulo!)</strong>
+            <span>Peso 10%: 32 alunos votaram Clenya (8,65%), 5 votaram Caio (1,35%) e 1 aluno meteu VOTO NULO!</span>
           </div>
         </div>
         <div class="weight-card tie-card">
-          <span class="w-pct">⚖️ 3.6</span>
+          <span class="w-pct">1 / 18</span>
           <div class="w-desc">
-            <strong>Critérios de Desempate do Edital</strong>
-            <span>1º Maior Grau Acadêmico (Doutorado vs Mestrado) • 2º Tempo de UERR (2011 vs 2023) • 3º Maior Idade!</span>
+            <strong>Único Curso com Disputa na UERR!</strong>
+            <span>Nos outros 17 cursos da UERR só teve candidato único (e Ciências Agrárias teve ZERO votos!).</span>
           </div>
         </div>
       </div>
@@ -132,43 +196,44 @@
     <section class="scoreboard-card card-glass">
       <div class="scoreboard-header">
         <div class="urnas-progress">
-          <span class="mono-label">SEÇÕES APURADAS (BAIRROS DE BOA VISTA + INTERIOR RR):</span>
-          <strong id="urnasPct" class="mono-val">99,42%</strong>
-          <span class="sub-detail">(Loop infinito de recontagem recursiva ativado)</span>
+          <span class="mono-label">STATUS DAS URNAS (RELATÓRIO 26/11/2026 11:43:23):</span>
+          <strong id="urnasPct" class="mono-val">100,00% OFICIAL</strong>
+          <span class="sub-detail" id="modeSubDetail">(Exibindo os dados reais do Relatório Oficial da UERR — use os botões no topo se quiser simular recontagem!)</span>
         </div>
         <div class="turn-timer">
-          <span class="mono-label">PRÓXIMO LOTE DE URNAS EM:</span>
-          <span id="nextBatchTimer" class="timer-badge">08s</span>
+          <span class="mono-label">MODO DE APURAÇÃO:</span>
+          <button id="btnToggleSimLoop" class="timer-badge btn-toggle-sim" title="Clique para ligar/desligar o loop de viradas malucas">🔒 OFICIAL TRAVADO (LIGAR ZOEIRA 🔄)</button>
         </div>
       </div>
 
       <!-- CANDIDATES DUEL -->
       <div class="duel-grid">
         <!-- CANDIDATE 1: CLENYA -->
-        <div class="candidate-box clenya-box" id="cardClenya">
-          <div class="leader-crown" id="crownClenya">👑 NA FRENTE (MATEMATICAMENTE COMPILADA)</div>
+        <div class="candidate-box clenya-box leading-clenya" id="cardClenya">
+          <div class="leader-crown" id="crownClenya">👑 ELEITA OFICIALMENTE (1º LUGAR • 70,65% NO PDF!)</div>
           <div class="cand-top">
             <div class="avatar-wrap clenya-ring">
               <img src="clenya.gif" alt="Dra. Clenya Rejane Barros de Lima" class="cand-avatar" />
-              <span class="cand-number">CHAPA 10</span>
+              <span class="cand-number">1º LUGAR</span>
             </div>
             <div class="cand-info">
               <span class="cand-party">PES — Partido da Engenharia de Software &amp; Moodle EaD</span>
               <h2>Dra. Clenya Rejane Barros de Lima</h2>
-              <p class="cand-slogan">"Por um curso com 100% de Usabilidade, Normas ABNT e 54 Bancas de TCC por semestre!"</p>
+              <p class="cand-slogan">"Eleita com 100% dos Técnicos (4x0), 86,5% dos Alunos (32x5) e 54 Bancas de TCC garantidas para 2027/2029!"</p>
             </div>
           </div>
           <div class="cand-stats">
-            <div class="pct-display" id="pctClenya">50,63%</div>
+            <div class="pct-display" id="pctClenya">70,65%</div>
             <div class="votes-display">
-              <span id="votesClenya">40</span> votos ponderados
-              <span class="raw-detail" id="rawClenya">(37 alunos • 3 profs)</span>
+              <span id="votesClenya">39</span> votos nominais válidos
+              <span class="raw-detail" id="rawClenya">(32 discentes • 3 docentes • 4 técnicos)</span>
             </div>
           </div>
           <div class="cand-tags">
-            <span class="tag">🎓 Doutora UNIRIO</span>
-            <span class="tag">📋 Rainha das Bancas (54 TCCs)</span>
-            <span class="tag">🌐 Mestre CESAR.edu</span>
+            <span class="tag">🏆 Eleita 2027/2029</span>
+            <span class="tag">👨‍🏫 3 Docentes (42,00%)</span>
+            <span class="tag">🛠️ 4 Técnicos (20,00%)</span>
+            <span class="tag">🎓 32 Discentes (8,65%)</span>
           </div>
         </div>
 
@@ -176,37 +241,38 @@
         <div class="vs-column">
           <div class="vs-circle">VS</div>
           <div class="diff-box">
-            <span class="diff-label">DIFERENÇA ATUAL</span>
-            <strong id="voteDiff" class="diff-val">1 VOTO</strong>
-            <span id="leadReason" class="lead-reason">Urna do Canarinho acabou de entrar!</span>
+            <span class="diff-label">VANTAGEM OFICIAL</span>
+            <strong id="voteDiff" class="diff-val">+41,30% (32 VOTOS)</strong>
+            <span id="leadReason" class="lead-reason">Relatório Oficial 26/11 às 11:43:23 (+ 1 Voto Nulo Discente e 35 Abstenções!)</span>
           </div>
         </div>
 
         <!-- CANDIDATE 2: CAIO -->
         <div class="candidate-box caio-box" id="cardCaio">
-          <div class="leader-crown" id="crownCaio" style="display:none;">👑 NA FRENTE (RENDERIZADO EM 60 FPS)</div>
+          <div class="leader-crown" id="crownCaio" style="display:none;">👑 NA FRENTE (RECONTAGEM PARALELA EM 60 FPS)</div>
           <div class="cand-top">
             <div class="avatar-wrap caio-ring">
               <img src="caio.gif" alt="Msc. Caio de Jesus Gregoratto" class="cand-avatar" />
-              <span class="cand-number">CHAPA 20</span>
+              <span class="cand-number">2º LUGAR</span>
             </div>
             <div class="cand-info">
               <span class="cand-party">P3D — Partido do Blender 3D, Visão Computacional &amp; AgroTech</span>
               <h2>Msc. Caio de Jesus Gregoratto</h2>
-              <p class="cand-slogan">"Menos ABNT, mais OpenGL, Detecção de Multidões e GPS para Agropecuária no Linux!"</p>
+              <p class="cand-slogan">"29,35% de pura resistência no Linux! Quase empatou nos professores (2 a 3), mas os alunos do Blender dormiram!"</p>
             </div>
           </div>
           <div class="cand-stats">
-            <div class="pct-display" id="pctCaio">49,37%</div>
+            <div class="pct-display" id="pctCaio">29,35%</div>
             <div class="votes-display">
-              <span id="votesCaio">39</span> votos ponderados
-              <span class="raw-detail" id="rawCaio">(36 alunos • 3 profs)</span>
+              <span id="votesCaio">7</span> votos nominais válidos
+              <span class="raw-detail" id="rawCaio">(5 discentes • 2 docentes • 0 técnicos)</span>
             </div>
           </div>
           <div class="cand-tags">
-            <span class="tag">🎨 Mestre UFAM</span>
-            <span class="tag">🌾 Bacharel Agronegócios + BCC</span>
-            <span class="tag">🐧 Linux &amp; Digitação SENAC 60h</span>
+            <span class="tag">🥈 2º Colocado Oficial</span>
+            <span class="tag">👨‍🏫 2 Docentes (28,00%)</span>
+            <span class="tag">🛠️ 0 Técnicos (0,00%)</span>
+            <span class="tag">🎓 5 Discentes (1,35%)</span>
           </div>
         </div>
       </div>
@@ -214,22 +280,22 @@
       <!-- TUG OF WAR BAR -->
       <div class="tug-of-war-wrap">
         <div class="tug-labels">
-          <span class="clenya-text">🟣 DRA. CLENYA (<span id="barLabelClenya">50.6%</span>)</span>
-          <span class="tug-center-label">⚡ CABO DE GUERRA ELEITORAL (50% = EMPATE TÉCNICO NO SIGAA)</span>
-          <span class="caio-text">🟢 MSC. CAIO (<span id="barLabelCaio">49.4%</span>)</span>
+          <span class="clenya-text">🟣 DRA. CLENYA (<span id="barLabelClenya">70,65%</span>)</span>
+          <span class="tug-center-label">⚡ PLACAR PONDERADO OFICIAL (42% + 20% + 8,65% vs 28% + 0% + 1,35%)</span>
+          <span class="caio-text">🟢 MSC. CAIO (<span id="barLabelCaio">29,35%</span>)</span>
         </div>
         <div class="tug-bar">
-          <div class="tug-fill-clenya" id="barClenya" style="width: 50.63%;"></div>
+          <div class="tug-fill-clenya" id="barClenya" style="width: 70.65%;"></div>
           <div class="tug-marker"></div>
-          <div class="tug-fill-caio" id="barCaio" style="width: 49.37%;"></div>
+          <div class="tug-fill-caio" id="barCaio" style="width: 29.35%;"></div>
         </div>
       </div>
 
       <!-- LIVE LOG STREAM -->
       <div class="live-event-banner" id="liveEventBanner">
-        <span class="event-icon">📡</span>
-        <span class="event-time" id="eventTime">21:05:12</span>
-        <span class="event-msg" id="eventMsg">Boletim de Urna #404 recebido de <strong>Canarinho (Sede UERR)</strong>: Dra. Clenya assume a liderança por 1 voto após recontagem no Moodle!</span>
+        <span class="event-icon">🏛️</span>
+        <span class="event-time" id="eventTime">11:43:23</span>
+        <span class="event-msg" id="eventMsg"><strong>RELATÓRIO OFICIAL UERR (26/11/2026):</strong> Dra. Clenya vence com <strong>70,65%</strong> (3 Docentes, 4 Técnicos, 32 Discentes) contra <strong>29,35%</strong> do Msc. Caio (2 Docentes, 0 Técnicos, 5 Discentes) + 1 Voto Nulo Discente!</span>
       </div>
     </section>
 
@@ -321,11 +387,11 @@
 
         <!-- QUICK REACTION BUTTONS -->
         <div class="quick-reactions">
-          <button class="react-btn" data-msg="Deu /indisponivel às 22:00:00 e o resultado só sai AMANHÃ (26/11)! 😭🛑">🛑 Só sai amanhã (26/11)!</button>
-          <button class="react-btn" data-msg="73 alunos dividindo 10% do peso = meu voto vale 0,13% kkkkkkk 🤡">🤡 Voto aluno = 0,13%</button>
-          <button class="react-btn" data-msg="@Valbert Breno faz a apuração dos votos aí que o site oficial fechou! 📊">📊 @Valbert apura aí!</button>
-          <button class="react-btn" data-msg="Calma que até amanhã tão contabilizando os votos do Nordeste! 🌵🗳️">🌵 Votos do Nordeste</button>
-          <button class="react-btn" data-msg="Me manda uma foto deles aí, vou tentar fazer uma parada aq 💻">💻 Fazer uma parada aq</button>
+          <button class="react-btn" data-msg="SAIU O PDF OFICIAL! Dra. Clenya 70,65% (32 alunos, 4 técnicos, 3 profs) x Caio 29,35% (5 alunos, 0 técnicos, 2 profs)! 🏆🟣">🏆 Clenya 70,65% Oficial!</button>
+          <button class="react-btn" data-msg="QUEM FOI O 1 ALUNO QUE VOTOU NULO?? E cadê os outros 35 alunos de Computação que nem votaram?! 🕵️‍♂️🤡">🕵️ Quem foi o 1 Nulo?!</button>
+          <button class="react-btn" data-msg="Técnicos 4 a 0 pra Dra. Clenya! Os técnicos administrativos decidiram 20% inteirinhos! 🛠️🔥">🛠️ Técnicos 4 x 0!</button>
+          <button class="react-btn" data-msg="Nos professores foi quase empate: 3 pra Clenya (42%) x 2 pro Caio (28%)! 1 voto docente quase virou tudo! 👨‍🏫⚖️">👨‍🏫 Profs: 3 x 2!</button>
+          <button class="react-btn" data-msg="Ciências Agrárias teve ZERO votos (0 prof, 0 téc, 0 aluno) e Turismo 0 alunos kkkkk Computação carregou a eleição da UERR! 🌾😂">🌾 Agrárias = 0 votos!</button>
         </div>
 
         <!-- INPUT FORM -->
@@ -447,25 +513,26 @@
     <section class="voters-section card-glass">
       <div class="section-header">
         <div>
-          <h2>📋 Lista Oficial de Eleitores Aptos — Ciência da Computação (PDF SEI/GRR - 25061245)</h2>
-          <p class="section-sub">Todos os <strong>73 acadêmicos</strong> (págs. 26–28 do PDF) + <strong>docentes e técnicos de informática</strong> da UERR rastreados em tempo real por bairro de Roraima!</p>
+          <h2>📋 Auditoria Nominal dos Eleitores — Relatório Oficial (26/11) vs Lista SEI (25061245)</h2>
+          <p class="section-sub">Distribuição exata dos <strong>47 votos registrados na urna de Computação</strong> (39 Dra. Clenya, 7 Msc. Caio, 1 Nulo Discente) + os <strong>38 ausentes/abstenções</strong> (35 alunos, 1 docente e 2 técnicos TI)!</p>
         </div>
         <div class="voters-filters">
-          <input type="text" id="voterSearchInput" placeholder="🔍 Buscar seu nome na lista do SEI..." class="search-input" />
+          <input type="text" id="voterSearchInput" placeholder="🔍 Buscar nome ou status (Clenya, Caio, Nulo, Abstenção)..." class="search-input" />
           <select id="voterCategoryFilter" class="filter-select">
-            <option value="all">Todos os Eleitores (85)</option>
-            <option value="Acadêmico BCC">🎓 Acadêmicos Ciência da Computação (73)</option>
-            <option value="Docente Efetivo">👨‍🏫 Professores do Curso / Banca (6)</option>
-            <option value="Técnico TI">🛠️ Analistas / Técnicos em Informática (6)</option>
+            <option value="all">Todos da Lista SEI (85)</option>
+            <option value="Acadêmico BCC">🎓 Acadêmicos BCC (73 aptos: 32 Clenya • 5 Caio • 1 Nulo • 35 Ausentes)</option>
+            <option value="Docente Efetivo">👨‍🏫 Docentes do Curso (6 aptos: 3 Clenya • 2 Caio • 1 Ausente)</option>
+            <option value="Técnico TI">🛠️ Técnicos vinculados (6 aptos: 4 Clenya • 0 Caio • 2 Ausentes)</option>
           </select>
         </div>
       </div>
 
       <div class="voters-stats-bar">
-        <div class="v-stat">Total na Lista: <strong id="statTotalVoters">85</strong></div>
-        <div class="v-stat clenya-stat">Declarados/Simulados Dra. Clenya: <strong id="statClenyaVoters">43</strong></div>
-        <div class="v-stat caio-stat">Declarados/Simulados Msc. Caio: <strong id="statCaioVoters">42</strong></div>
-        <div class="v-stat">Status: <strong>🔄 Muda a cada recontagem de bairro!</strong></div>
+        <div class="v-stat">Aptos no SEI: <strong id="statTotalVoters">85</strong></div>
+        <div class="v-stat clenya-stat">🟣 Votos Dra. Clenya: <strong id="statClenyaVoters">39</strong> (32 Alunos • 3 Profs • 4 Técs)</div>
+        <div class="v-stat caio-stat">🟢 Votos Msc. Caio: <strong id="statCaioVoters">7</strong> (5 Alunos • 2 Profs • 0 Técs)</div>
+        <div class="v-stat">⚠️ Voto Nulo: <strong id="statNullVoters" style="color:#f87171;">1 Aluno</strong></div>
+        <div class="v-stat">😴 Abstenções (Não votaram): <strong id="statAbstVoters" style="color:#94a3b8;">38</strong> (35 Alunos)</div>
       </div>
 
       <div class="voters-table-wrap">
@@ -474,13 +541,65 @@
             <tr>
               <th>#</th>
               <th>Nome no Documento SEI (Edital 01/2026)</th>
-              <th>Categoria / Vínculo</th>
+              <th>Categoria / Peso</th>
               <th>Bairro / Polo Alocado (RR)</th>
-              <th>Status da Urna (Simulação)</th>
-              <th>Última Ação Detectada</th>
+              <th>Status Oficial / Simulado</th>
+              <th>Observação da Auditoria</th>
             </tr>
           </thead>
           <tbody id="votersTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PANORAMA GERAL DOS 18 CURSOS DA UERR (PÁGINAS 1 A 6 DO RELATÓRIO OFICIAL) -->
+    <section class="all-courses-section card-glass">
+      <div class="section-header">
+        <div>
+          <h2>🏛️ Relatório Geral das Eleições UERR 2026 — Todos os 18 Cursos (PDF Oficial 26/11 às 11:43:23)</h2>
+          <p class="section-sub">Dados 100% reais extraídos das páginas 1 a 6 do arquivo <code>Relatorio___Votacao_para_Coordenacoes_de_Curso_2026.pdf</code> (<a href="https://eleicoes.uerr.edu.br/coordenador2026/relatorio" target="_blank" rel="noopener" style="color:#38bdf8;">link oficial</a>)</p>
+        </div>
+        <div class="lattes-badge">Gerado em: 26/11/2026 11:43:23 • Págs. 1/6 a 6/6</div>
+      </div>
+
+      <div class="courses-highlights-row">
+        <div class="ch-card ch-highlight-bcc">
+          <span class="ch-emoji">⚔️</span>
+          <div>
+            <strong>Único Curso com Disputa Real</strong>
+            <p><strong>Ciência da Computação</strong> foi o único dos 18 cursos com 2 candidatos (Dra. Clenya 70,65% x Msc. Caio 29,35%) e o 2º maior engajamento discente da UERR (38 alunos nas urnas)!</p>
+          </div>
+        </div>
+        <div class="ch-card ch-highlight-contabeis">
+          <span class="ch-emoji">📈</span>
+          <div>
+            <strong>Recorde de Votos: Contábeis &amp; Medicina</strong>
+            <p><strong>Ciências Contábeis</strong> liderou em alunos votantes (42 válidos + 1 nulo = 43 alunos, 8 profs e 5 técnicos para Itajay Soares), seguido por <strong>Ciência da Computação</strong> (38 alunos) e <strong>Medicina</strong> (29 alunos)!</p>
+          </div>
+        </div>
+        <div class="ch-card ch-highlight-agrarias">
+          <span class="ch-emoji">👻</span>
+          <div>
+            <strong>O Mistério de Ciências Agrárias &amp; Turismo</strong>
+            <p>Em <strong>Ciências Agrárias</strong> não houve candidato e o placar foi <strong>0 Docente, 0 Técnico e 0 Discente</strong>! Já em <strong>Turismo</strong>, a Profa. Rosijane venceu com 3 votos docentes e <strong>0 votos de alunos</strong> (70,00%)!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="voters-table-wrap">
+        <table class="voters-table all-courses-table">
+          <thead>
+            <tr>
+              <th>Curso de Graduação (UERR)</th>
+              <th>Colocação &amp; Candidato(a)</th>
+              <th>Docentes (70%)</th>
+              <th>Técnicos (20%)</th>
+              <th>Discentes (10%)</th>
+              <th>Brancos / Nulos</th>
+              <th>Pontuação Oficial (%)</th>
+            </tr>
+          </thead>
+          <tbody id="allCoursesTableBody"></tbody>
         </table>
       </div>
     </section>
